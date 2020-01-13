@@ -2,6 +2,8 @@
 SET client_encoding = 'UTF8';
 SET search_path = public, pg_catalog;
 
+INSERT INTO transport_localized (transport, translated, name) VALUES ('bus', 'de', 'Bus');
+INSERT INTO transport_localized (transport, translated, name) VALUES ('bus', 'en', 'Bus or Coach');
 INSERT INTO transport_localized (transport, translated, name) VALUES ('car', 'de', 'Auto');
 INSERT INTO transport_localized (transport, translated, name) VALUES ('car', 'en', 'Car');
 INSERT INTO transport_localized (transport, translated, name) VALUES ('plane', 'de', 'Flugzeug');
