@@ -1222,6 +1222,9 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person_
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person_rating::speaker_quality', 'de', 'Qualität des Vortragenden');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person_rating::speaker_quality', 'en', 'Speaker quality');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person_rating::speaker_quality', 'pt', 'Palestrante qualidade');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::accommodation', 'de', 'Hotel');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::accommodation', 'en', 'Hotel');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::accommodation', 'pt', 'Hotel');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::arrived', 'de', 'Angekommen');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::arrived', 'en', 'Arrived');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::arrived', 'pt', 'Arrived');
