@@ -7,3 +7,5 @@ CREATE TRIGGER conference_release_after_insert AFTER INSERT ON conference_releas
 
 CREATE TRIGGER custom_fields_trigger BEFORE INSERT OR UPDATE OR DELETE ON custom.custom_fields FOR EACH ROW EXECUTE PROCEDURE custom_field_trigger();
 
+CREATE TRIGGER track_manager_trigger AFTER INSERT OR UPDATE OR DELETE ON conference_track_account FOR EACH STATEMENT EXECUTE PROCEDURE track_manager_trigger();
+
