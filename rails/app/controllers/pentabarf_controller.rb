@@ -31,7 +31,7 @@ class PentabarfController < ApplicationController
 
   def recent_changes
     @content_title = "Recent Changes"
-    @changes = View_recent_changes.select( {}, {:limit => params[:id] || 500 } )
+    @changes = View_recent_changes.select( {}, {:limit => params[:id] || 200 } )
   end
 
   def schedule
