@@ -1,0 +1,29 @@
+xml.div({:id=>:data}) do
+
+  xml.table({:id=>:report_devroom_managers_table,:class=>:sortable}) do
+    xml.thead do
+      xml.tr do
+        xml.th "Conference Track"
+        xml.th "Mail Alias"
+        xml.th "Alias Expansion"
+        xml.th "Devroom Manager Contacts"
+        xml.th "Person record emails"
+        xml.th "Login Names"
+      end
+    end
+
+    xml.tbody do
+      counter = 0
+      @rows.each do | row |
+        xml.tr do
+          xml.td do xml.text row.conference_track end
+	  xml.td do xml.text row.mail_alias end
+	  xml.td do xml.text row.alias_expansion end
+	  xml.td do xml.text row.devroom_managers_contacts end
+	  xml.td do xml.text row.person_emails end
+	  xml.td do xml.text row.login_names end
+        end
+      end
+    end
+  end
+end

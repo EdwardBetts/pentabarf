@@ -5,7 +5,7 @@ class ReportController < ApplicationController
   around_filter :update_last_login
 
   ADMIN_REPORTS = [:accommodation,:arrived,:not_arrived,:pickup,:expenses]
-  REPORTS = [:feedback,:missing,:paper,:slides,:resources,:review]
+  REPORTS = [:devroom_managers,:feedback,:missing,:paper,:slides,:resources,:review]
 
   def index
   end
@@ -29,6 +29,11 @@ class ReportController < ApplicationController
   def accommodation
     @content_title = "Accommodation Report"
     @rows = View_report_accommodation.select(:conference_id=>@current_conference.conference_id)
+  end
+
+  def devroom_managers
+    @content_title = "Devroom Managers"
+    @rows = View_report_devroom_managers.select(:conference_id=>@current_conference.conference_id)
   end
 
   def pickup

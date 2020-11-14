@@ -1232,6 +1232,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report:
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::arrived', 'de', 'Angekommen');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::arrived', 'en', 'Arrived');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::arrived', 'pt', 'Arrived');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::devroom_managers', 'en', 'Devroom Managers');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::expenses', 'de', 'Ausgaben');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::expenses', 'en', 'Expenses');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('report::expenses', 'pt', 'Despesas');

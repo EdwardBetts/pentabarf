@@ -25,6 +25,7 @@
 \i views/report/report_accommodation.sql
 \i views/report/report_arrived.sql
 \i views/report/report_not_arrived.sql
+\i views/report/report_devroom_managers.sql
 \i views/report/report_events.sql
 \i views/report/report_expenses.sql
 \i views/report/report_feedback.sql
