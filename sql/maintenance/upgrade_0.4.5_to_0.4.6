@@ -50,4 +50,8 @@ $$ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER track_manager_trigger AFTER INSERT OR UPDATE OR DELETE ON conference_track_account FOR EACH STATEMENT EXECUTE PROCEDURE track_manager_trigger();
 
+ALTER TABLE base.conference_track ADD COLUMN conference_track_mail_alias TEXT;
+
+SELECT log.activate_logging();
+
 COMMIT;

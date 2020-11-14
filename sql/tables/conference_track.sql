@@ -4,6 +4,7 @@ CREATE TABLE base.conference_track (
   conference_track TEXT NOT NULL,
   conference_id INTEGER NOT NULL,
   rank INTEGER,
+  conference_track_mail_alias TEXT,
   CHECK (strpos( conference_track, '/' ) = 0)
 );
 
