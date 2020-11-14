@@ -25,6 +25,7 @@ INSERT INTO object_domain (object, domain) VALUES ('conference_room', 'conferenc
 INSERT INTO object_domain (object, domain) VALUES ('conference_room_role', 'conference');
 INSERT INTO object_domain (object, domain) VALUES ('conference_team', 'conference');
 INSERT INTO object_domain (object, domain) VALUES ('conference_track', 'conference');
+INSERT INTO object_domain (object, domain) VALUES ('conference_track_account', 'conference');
 INSERT INTO object_domain (object, domain) VALUES ('conference_transaction', 'public');
 INSERT INTO object_domain (object, domain) VALUES ('conflict_localized', 'localization');
 INSERT INTO object_domain (object, domain) VALUES ('country_localized', 'localization');

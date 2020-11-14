@@ -79,6 +79,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::acronym', 'de', 'Akronym der Konferenz');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::acronym', 'en', 'Conference acronym');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::acronym', 'pt', 'Acrônimo da Conferência');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::add_account_track', 'en', 'Add Track Manager');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::add_conference_day', 'de', 'Tag hinzufügen');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::add_conference_day', 'en', 'Add day');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::add_conference_day', 'pt', 'Adicionar dia');
@@ -457,6 +458,8 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::tag', 'de', 'Track-Kürzel');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::tag', 'en', 'Tag');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::tag', 'pt', 'Tag');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track_account::account_id', 'en', 'Login Name');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track_account::track_id', 'en', 'Track');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conflict::conflict', 'de', 'Konflikt');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conflict::conflict', 'en', 'Conflict');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conflict::conflict', 'pt', 'Conflito');

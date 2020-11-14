@@ -15,6 +15,10 @@ class Conference < Momomoto::Table
       conference_track( *args )
     end
 
+    def track_accounts( *args )
+      conference_track_account( *args )
+    end
+
     def releases( *args )
       conference_release( *args )
     end

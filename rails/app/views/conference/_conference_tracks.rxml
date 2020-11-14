@@ -34,5 +34,45 @@ xml.div(:id=>'content-tracks') do
     xml.button( local('conference::add_conference_track'), {:type=>:button,:onclick=>'table_add_row("conference_track")'})
   end
 
+  xml.fieldset do
+    xml.legend( local('Track Managers') )
+
+    xml.table(:id=>'conference_track_account_table',:style=>'display:none') do
+
+      xml.thead do
+        xml.tr do
+          [:conference_track_id,:account_id].each do | field | xml.th( local( "account_track::#{field}") ) end
+          xml.th local( "form::remove" )
+        end
+      end
+
+      xml.tbody(:id=>'conference_track_account_tbody') do
+        xml.tr(:id=>'conference_track_account_template',:style=>'display:none') do
+          xml.td do
+            xml.input({:type=>:hidden,:id=>'conference_track_account[row_id][current_transaction_id]',:name=>'conference_track_account[row_id][current_transaction_id]',:value=>0})
+            xml.input({:type=>:hidden,:id=>'conference_track_account[row_id][conference_track_account_id]',:name=>'conference_track_account[row_id][conference_track_account_id]'})
+            tracks = @conference.tracks.map{|t| [t.conference_track_id,t.conference_track]}
+            if not tracks.empty?
+             xml << select_tag( 'conference_track_account[row_id][conference_track_id]', tracks,{:with_empty=>true})
+           end
+          end
+          xml.td do
+            xml << select_tag( 'conference_track_account[row_id][account_id]', View_find_account.select.map{|a| [a.account_id, a.login_name]}, {:with_empty=>true} )
+          end
+
+          xml.td do xml.input({:type=>:checkbox,:name=>'conference_track_account[row_id][remove]',:id=>'conference_track_account[row_id][remove]'}) end
+        end
+      end
+    end
+
+    xml.script(:type=>'text/javascript') do
+      @conference.track_accounts.each do | a |
+        xml << js_function( 'table_add_row', 'conference_track_account', a.current_transaction_id, a.conference_track_account_id, a.conference_track_id, a.account_id  )
+      end
+    end
+
+    xml.button( local('conference::add_account_track'), {:type=>:button,:onclick=>'table_add_row("conference_track_account")'})
+  end
+
 end
 

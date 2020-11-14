@@ -113,6 +113,7 @@ BEGIN;
 \i tables/custom/custom_person.sql
 \i tables/custom/custom_conference_person.sql
 \i tables/custom/custom_event.sql
+\i tables/conference_track_account.sql
 
 COMMIT;
 
