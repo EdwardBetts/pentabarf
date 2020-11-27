@@ -1,7 +1,7 @@
 CREATE OR REPLACE VIEW view_report_devroom_managers AS
   SELECT t.conference_id, 
     conference_track, 
-    concat(conference_track_mail_alias, '@fosdem.org') AS mail_alias, 
+    concat(conference_track_mail_alias, '-devroom-manager@fosdem.org') AS mail_alias,
     array_to_string(array_agg(a.email), ', ') AS alias_expansion,
     array_to_string(array_agg(concat(p.first_name, ' ', p.last_name, ' <', a.email,'>')), ', ') AS devroom_managers_contacts,
     array_to_string(array_agg(p.email), ', ') AS person_emails,
