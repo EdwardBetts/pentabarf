@@ -13,8 +13,8 @@ tabs = [:general,:availability,:events,:contact,:description,:links,:rating]
 if POPE.user.person_id == @person.person_id ||
   POPE.permission?('account::modify') || # global admins
   ( POPE.conference_permission?('account_conference_role::create', POPE.user.current_conference_id) && 
-    !@account.new_record? ) # conference adins
-  tabs << :travel
+    !@account.new_record? ) # conference admins
+  tabs << :travel if @conference.f_travel_enabled
   tabs << :account 
 end
 

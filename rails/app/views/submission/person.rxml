@@ -10,6 +10,8 @@ end
 
 tabs = [:general,:availability,:contact,:description,:links,:travel,:account]
 
+tabs.delete(:travel) if !@conference.f_travel_enabled
+
 xml << js_tabs( tabs )
 
 xml.div( :id => 'data' ) do
