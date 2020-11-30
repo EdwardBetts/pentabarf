@@ -8,9 +8,6 @@ xml.div(:id=>'content-general') do
       xml << text_field_row( @person, :first_name )
       xml << text_field_row( @person, :last_name )
       xml << text_field_row( @person, :nickname )
-      xml << text_field_row( @person, :public_name )
-      xml << text_field_row( @person, :title )
-      xml << select_row( @person, :gender, [[true,'male'],[false,'female']], {:with_empty=>true})
       xml << file_row( :person_image, :image )
       xml << check_box_row( @person_image, :public )
       xml << check_box_row( :person_image, :remove )
@@ -37,36 +34,5 @@ xml.div(:id=>'content-general') do
       end
     end
   end if custom_fields_conference_person.length > 0 || custom_fields_person.length > 0
-
-  xml.fieldset do
-    xml.legend( local('person::spoken_languages') )
-    xml.table(:id=>'person_language_table',:style=>'display:none') do
-      xml.thead do
-        xml.tr do
-          xml.th( local('language') )
-          xml.th( local('form::remove') )
-        end
-      end
-      xml.tbody(:id=>'person_language_tbody') do
-        xml.tr(:id=>'person_language_template',:style=>'display:none') do
-          xml.td do
-            xml.input({:type=>:hidden,:id=>'person_language[row_id][current_transaction_id]',:name=>'person_language[row_id][current_transaction_id]'})
-            xml << select_tag( 'person_language[row_id][language]', Language_localized.select(:translated=>@current_language).map{|e| [e.language, e.name]})
-          end
-          xml.td do
-            xml.input({:type=>:checkbox,:name=>'person_language[row_id][remove]',:id=>'person_language[row_id][remove]'})
-          end
-        end
-      end
-    end
-
-    xml.script(:type=>'text/javascript') do 
-      Person_language.select( :person_id => @person.person_id ).each do | c |
-        xml << js_function( 'table_add_row', 'person_language', c.current_transaction_id, c.language )
-      end
-    end
-
-    xml.button( local('person::add_language'), {:type=>:button,:onclick=>'table_add_row("person_language")'})
-  end
 
 end

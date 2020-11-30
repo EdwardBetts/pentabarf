@@ -13,7 +13,6 @@ xml.div(:id=>'content-account') do
         xml.td( local('account::repeat_password'))
         xml.td do xml.input({:type=>:password,:name=>'account[password2]',:size=>40,:autocomplete=>'off'}) end
       end
-      xml << select_row( POPE.user.settings, :current_language, Language.select({:localized=>'t'}).map(&:language) )
     end
   end
 
