@@ -1,7 +1,9 @@
 xml.div(:id=>'content-description') do
 
-  xml << text_area_fieldset( @event, :abstract, {:rows=>5,:counter=>@conference.abstract_length,:markup_help=>true} )
-  xml << text_area_fieldset( @event, :description, {:rows=>12,:counter=>@conference.description_length,:markup_help=>true} )
+  xml << text_area_fieldset( @event, :abstract, {:rows=>5,:counter=>@conference.abstract_length,:markup_help=>true,
+	:hint=>"Required.  One or two paragraphs for publication that summarise your presentation."} )
+  xml << text_area_fieldset( @event, :description, {:rows=>12,:counter=>@conference.description_length,:markup_help=>true,
+	:hint=>"Optional.  Additional information that will be published below the contents of the previous box - never in place of it - so please don't duplicate that."} )
 
 end
 

@@ -11,6 +11,10 @@ xml.div(:id=>'content-availability') do
   xml.fieldset do
     xml.legend local('availability')
 
+    xml.p do
+      xml.text "What times - expressed in Brussels local time (UTC+1) - can you be available during the days of the event?"
+    end
+
     xml.table do
       xml.thead do
         xml.tr do
@@ -24,7 +28,11 @@ xml.div(:id=>'content-availability') do
       xml.tbody do
         @conference.days.each_with_index do | day, index |
           xml.tr do
-            xml.td day.name ? day.name : day.conference_day
+            xml.td do
+	      xml << day.conference_day.to_s
+	      xml.text " - " if day.name
+	      xml << day.name if day.name
+	    end
             24.times do | hour |
               real_hour = ( @conference.day_change.hour + hour ) % 24
               date = day.conference_day + ( ( @conference.day_change.hour + hour ) / 24 )

@@ -1,9 +1,9 @@
 xml.div(:id=>'content-description') do
 
   xml << text_area_fieldset( @conference_person, :abstract, {:rows=>5,:counter=>@conference.abstract_length,:markup_help=>true,
-    :hint=>"Required.  One or two sentences or a short paragraph about yourself."} )
+    :hint=>"Required.  A short paragraph about you written in the third person for publication."} )
   xml << text_area_fieldset( @conference_person, :description, {:rows=>12,:counter=>@conference.description_length,:markup_help=>true,
-    :hint=>"Optional.  Another paragraph about yourself.  Please don't duplicate the brief biography!"} )
+    :hint=>"Optional.  More information about you.  This will get published below the previous box, so please don't duplicate that."} )
 
 end
 

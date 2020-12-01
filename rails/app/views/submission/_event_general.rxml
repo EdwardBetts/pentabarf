@@ -3,6 +3,11 @@ xml.div(:id=>'content-general') do
   xml.fieldset do
     xml.legend local('event::tab::general')
 
+    xml.p do
+      xml.text "The Event title is sometimes shown on its own and needs to be short and concise.  It needs to convey sufficient information to attract the audience you are aiming for."
+      xml.text "Subtitle is optional."
+    end
+
     xml.table do
       xml << text_field_row( @event, :title )
       xml << text_field_row( @event, :subtitle )

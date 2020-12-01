@@ -3,6 +3,15 @@ xml.div(:id=>'content-general') do
   xml.fieldset do
     xml.img( :src=>url_for(:controller=>'image',:action=>:person,:id=>@person.person_id,:size=>'128x128'),:style=>'float: right;')
     xml.legend local('person::tab::general')
+    xml.p do
+      xml.text "Please click through the tabs above (or use 'Show all'), complete the relevant information, then press the 'Save' button that will appear on the bottom right as soon as anything is changed."
+    end
+    xml.p do
+      xml.text "Please also upload a photograph of yourself.  The image gets converted to 220 pixels (horizontal) by 180 pixels (vertical)."
+    end
+    xml.p do
+      xml.text "Nickname is optional and gets published as part of your name in the form 'FirstName LastName (Nickname)'"
+    end
 
     xml.table do
       xml << text_field_row( @person, :first_name )
