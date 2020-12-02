@@ -23,7 +23,8 @@ CREATE TABLE base.event (
   paper BOOL,
   slides BOOL,
   remark TEXT,
-  submission_notes TEXT
+  submission_notes TEXT,
+  licence TEXT
 );
 
 CREATE TABLE event (

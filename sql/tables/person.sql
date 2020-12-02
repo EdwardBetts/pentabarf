@@ -20,6 +20,7 @@ CREATE TABLE base.person (
   bic TEXT,
   bank_name TEXT,
   account_owner TEXT,
+  contact_instructions TEXT,
   CHECK (first_name IS NOT NULL OR last_name IS NOT NULL OR public_name IS NOT NULL OR nickname IS NOT NULL),
   CONSTRAINT person_email_check CHECK (email ~ E'^[\\w=_.+-]+@([\\w.+_-]+\.)+\\w{2,}$')
 );

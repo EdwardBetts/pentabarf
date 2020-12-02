@@ -10,6 +10,8 @@ xml.div(:id=>'content-contact') do
     end
   end
 
+  xml << text_area_fieldset( @person, :contact_instructions, {:rows=>5,:cols=>60 } )
+
   xml.fieldset do
     xml.legend local('person_im')
 

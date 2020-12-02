@@ -46,6 +46,9 @@ xml.div(:id=>'content-general') do
     end
   end unless custom_fields.empty?
 
+  xml << text_area_fieldset( @event, :licence, {:rows=>2,
+        :hint=>"If your presentation concerns specific software projects, please indicate the main software licence(s) that they use.  E.g. GPLv3."} )
+
   xml.fieldset do
     xml.legend local('event::tab::schedule')
 

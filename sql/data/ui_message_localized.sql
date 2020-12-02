@@ -575,6 +575,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::language', 'de', 'Sprache der Veranstaltung');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::language', 'en', 'Language used for presentation');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::language', 'pt', 'Linguagem utilizados para apresentação');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::licence', 'en', 'Software Licences');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::own::tab::coordinator', 'de', 'Koordinator');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::own::tab::coordinator', 'en', 'Coordinator');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::own::tab::participant', 'de', 'Teilnehmer');
@@ -1093,6 +1094,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person:
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person::city', 'de', 'Wohnort');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person::city', 'en', 'City of residence');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person::city', 'pt', 'Cidade de residência');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person::contact_instructions', 'en', 'Contact Instructions');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person::country', 'de', 'Land');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person::country', 'en', 'Country of residence');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('person::country', 'pt', 'País de residência');

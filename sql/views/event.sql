@@ -35,7 +35,8 @@ CREATE OR REPLACE VIEW view_event AS
          (conference_day.conference_day + event.start_time + conference.day_change)::timestamp AS start_datetime,
          event.start_time + conference.day_change AS real_starttime,
          event_image.mime_type,
-         mime_type.file_extension
+         mime_type.file_extension,
+	 event.licence
     FROM event
          INNER JOIN event_state_localized USING (event_state)
          INNER JOIN conference USING (conference_id)
