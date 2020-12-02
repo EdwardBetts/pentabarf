@@ -1,6 +1,7 @@
 xml.div(:id=>'content-comment') do
   xml.p do
-    xml.text "Please click through the tabs above (or use 'Show all'), complete the relevant information, then press the 'Save' button that will appear on the bottom right as soon as anything is changed."
+     xml.text "Please click through the tabs above or use 'Show all' and complete the relevant information. Then press the 'Save' button that will appear on the bottom right when anything is changed."
+     xml.text "The button saves changes made across all the tabs together - you only need to use it once after editing all the tabs but if you are entering a lot of text you might prefer to save multiple times as you go along. As soon as the data is saved into the database, reviewers can see it. You can update it at any point but if change something significant that might not be noticed please add a dated note to the Submission Notes box."
   end
   xml.img( :src=>url_for(:controller=>'image',:action=>:event,:id=>@event.event_id,:size=>'128x128'),:style=>'float: right;') if not @event.new_record?
   xml << text_area_fieldset( @event, :submission_notes, {:rows=>5,:cols=>60, 

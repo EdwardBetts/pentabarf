@@ -4,13 +4,14 @@ xml.div(:id=>'content-general') do
     xml.img( :src=>url_for(:controller=>'image',:action=>:person,:id=>@person.person_id,:size=>'128x128'),:style=>'float: right;')
     xml.legend local('person::tab::general')
     xml.p do
-      xml.text "Please click through the tabs above (or use 'Show all'), complete the relevant information, then press the 'Save' button that will appear on the bottom right as soon as anything is changed."
+      xml.text "Please click through the tabs above or use 'Show all' and complete the relevant information. Then press the 'Save' button that will appear on the bottom right when anything is changed."
+      xml.text "The button saves changes made across all the tabs together - you only need to use it once after editing all the tabs but if you are entering a lot of text you might prefer to save multiple times as you go along. As soon as the data is saved into the database, reviewers can see it. You can update it at any point."
     end
     xml.p do
       xml.text "Please also upload a photograph of yourself.  The image gets converted to 220 pixels (horizontal) by 180 pixels (vertical)."
     end
     xml.p do
-      xml.text "Nickname is optional and gets published as part of your name in the form 'FirstName LastName (Nickname)'"
+      xml.text "Nickname is optional. If you supply one, it gets published as part of your name in the form 'FirstName LastName (Nickname)'."
     end
 
     xml.table do

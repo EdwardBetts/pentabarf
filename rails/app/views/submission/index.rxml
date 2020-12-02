@@ -15,6 +15,29 @@ xml.div do
   end
 
   if @conference
+    xml.p do
+      xml.text "THE SYSTEM IS STILL BEING TESTED. SUBMISSIONS FOR FOSDEM21 WILL OPEN IN THE NEXT DAY OR TWO."
+    end
+
+    xml.p do
+      xml.text "In 2021, FOSDEM will be held entirely online. All presentations will need to be pre-recorded. We plan for most of them to be accompanied by live text-based chat and followed by live moderated video Q&A and discussion."
+    end
+    xml.p do
+      xml.text "Before proposing a session, please make sure you will have the facilities (camera, microphone, network) and time to prepare, upload and review a recording during the first two weeks of January under the guidance of one of our volunteers."
+      xml.text "If your proposal is accepted for the conference, you will also need to be available during the week before FOSDEM to familiarise yourself with and test the system to be used during the event."
+      xml.text "Please also fill out the Availability tab (under Person) to indicate the hours during which your presentation can be scheduled taking into account your local time zone."
+      xml.text "Make sure you can be in a place with a computer and solid network connection capable of supporting video streams at those times."
+      xml.text "You will need to check-in to test your connection about an hour before the scheduled time of your presentation and provide contact details we can use to try to attract your attention if you if you don't appear at the expected time."
+    end
+
+    xml.p do
+      xml.text "The conference language is English.  All content must relate to Free and Open Source Software.  By participating in the event you agree to the publication of your recordings and other content provided under the same licence as all FOSDEM content (CC-BY)."
+    end
+
+    xml.p do
+      xml.text "You may use program@fosdem.org to contact us with any questions relating to this submission process."
+    end
+
     xml.p local('submission::follow_these_steps')
 
     xml.table do
