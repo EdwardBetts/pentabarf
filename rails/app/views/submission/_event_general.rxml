@@ -53,7 +53,7 @@ xml.div(:id=>'content-general') do
     xml.legend local('event::tab::schedule')
 
     xml.p do
-      xml.text "The Duration is the proposed length of your pre-recorded talk. Some Q&A time will be provided in addition to this as interaction forms an important part of FOSDEM.  Please refer to the Call for Papers for the particular track to check for any additional guidance."
+      xml.text "The Duration is the proposed length of your pre-recorded talk. Where possible, some Q&A time will be provided in addition to this as interaction forms an important part of FOSDEM.  Please refer to the Call for Papers for the particular track to check for any additional guidance."
     end
 
     xml.table do
