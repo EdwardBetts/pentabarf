@@ -52,6 +52,7 @@ $$ LANGUAGE 'plpgsql';
 CREATE TRIGGER track_manager_trigger AFTER INSERT OR UPDATE OR DELETE ON conference_track_account FOR EACH STATEMENT EXECUTE PROCEDURE track_manager_trigger();
 
 ALTER TABLE base.conference_track ADD COLUMN conference_track_mail_alias TEXT;
+ALTER TABLE base.conference_track ADD COLUMN conference_call_for_papers_url TEXT;
 ALTER TABLE base.conference ADD COLUMN f_travel_enabled BOOL NOT NULL DEFAULT TRUE;
 ALTER TABLE base.event ADD COLUMN licence TEXT;
 ALTER TABLE base.person ADD COLUMN contact_instructions TEXT;
@@ -75,6 +76,13 @@ CREATE OR REPLACE VIEW view_report_devroom_managers AS
 
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_travel_enabled');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_travel_enabled', 'en', 'Enable Travel Information');
+
+INSERT INTO ui_message (ui_message) VALUES ('conference_track::conference_track_mail_alias');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::conference_track_mail_alias', 'en', 'Mail alias (@fosdem.org)');
+
+INSERT INTO ui_message (ui_message) VALUES ('conference_track::conference_call_for_papers_url');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::conference_call_for_papers_url', 'en', 'Call For Papers URL');
+
 
 CREATE OR REPLACE VIEW view_event AS
   SELECT event.event_id,

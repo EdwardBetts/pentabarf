@@ -8,6 +8,7 @@ xml.div(:id=>'content-tracks') do
           xml.th( local('conference_track') )
           xml.th( local('conference_track::rank') )
 	  xml.th( local('conference_track::conference_track_mail_alias') )
+	  xml.th( local('conference_track::conference_call_for_papers_url') )
           xml.th( local('form::remove') )
         end
       end
@@ -20,6 +21,7 @@ xml.div(:id=>'content-tracks') do
           end
           xml.td do xml.input({:type=>:text,:id=>'conference_track[row_id][rank]',:name=>'conference_track[row_id][rank]',:size=>3}) end
 	  xml.td do xml.input({:type=>:text,:id=>'conference_track[row_id][conference_track_mail_alias]',:name=>'conference_track[row_id][conference_track_mail_alias]'}) end
+	  xml.td do xml.input({:type=>:text,:id=>'conference_track[row_id][conference_call_for_papers_url]',:name=>'conference_track[row_id][conference_call_for_papers_url]',:size=>65}) end
           xml.td do
             xml.input({:type=>:checkbox,:name=>'conference_track[row_id][remove]',:id=>'conference_track[row_id][remove]'})
           end
@@ -29,7 +31,7 @@ xml.div(:id=>'content-tracks') do
 
     xml.script(:type=>'text/javascript') do 
       @conference.tracks.each do | c |
-	xml << js_function( 'table_add_row', 'conference_track', c.current_transaction_id, c.conference_track_id, c.conference_track, c.rank, c.conference_track_mail_alias )
+	xml << js_function( 'table_add_row', 'conference_track', c.current_transaction_id, c.conference_track_id, c.conference_track, c.rank, c.conference_track_mail_alias, c.conference_call_for_papers_url )
       end
     end
 

@@ -455,6 +455,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::color', 'en', 'Color');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::color', 'pt', 'Cor');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::conference_track_mail_alias', 'en', 'Mail alias (@fosdem.org)');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::conference_call_for_papers_url', 'en', 'Call For Papers URL');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::rank', 'de', 'Rank');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::rank', 'en', 'Rank');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::tag', 'de', 'Track-Kürzel');
