@@ -785,4 +785,7 @@ CREATE OR REPLACE VIEW view_event AS
          LEFT OUTER JOIN language_localized USING (language, translated)
 ;
 
+
+ALTER TABLE event ADD CONSTRAINT presentation_shorter_than_duration CHECK (presentation_length <= duration AND presentation_length >= '00:00:00');
+
 COMMIT;

@@ -29,6 +29,7 @@ CREATE TABLE base.event (
 );
 
 CREATE TABLE event (
+  CONSTRAINT presentation_shorter_than_duration CHECK (presentation_length <= duration AND presentation_length >= '00:00:00'),
   FOREIGN KEY (conference_id) REFERENCES conference (conference_id) ON UPDATE CASCADE ON DELETE RESTRICT,
   FOREIGN KEY (conference_day_id) REFERENCES conference_day (conference_day_id) ON UPDATE CASCADE ON DELETE SET NULL,
   FOREIGN KEY (conference_track_id) REFERENCES conference_track (conference_track_id) ON UPDATE CASCADE ON DELETE SET NULL,
