@@ -53,7 +53,7 @@ xml.div(:id=>'content-general') do
     xml.legend local('event::tab::schedule')
 
     xml.p do
-      xml.text "The Duration is the proposed length of your pre-recorded talk. Where possible, some Q&A time will be provided in addition to this as interaction forms an important part of FOSDEM.  Please refer to the Call for Papers for the particular track to check for any additional guidance."
+      xml.text "The Duration is the proposed length of your session in the live stream combining both pre-recorded talk and a short amount of live Q&A.  The presentation length is the length of the pre-recorded talk, which will be updated to the exact length when the video is ready.  Extended Q&A will be offered for those who wish to take part outside the live stream as interaction forms an important part of FOSDEM.  Please refer to the Call for Papers for the particular track to check for any additional guidance."
     end
 
     xml.table do
@@ -83,6 +83,13 @@ xml.div(:id=>'content-general') do
       end
       @event.duration = d[@conference.default_timeslots - 1] if not @event.duration
       xml << select_row( @event, :duration, d, {:selected=>@event.duration.strftime('%H:%M:%S')} )
+
+      xml.tr do
+        xml.td do xml.b( local('event::presentation_length')) end
+        xml.td do
+          xml.text! @event.presentation_length.strftime('%H:%M:%S')
+        end
+      end
 
       xml.tr do
         xml.td do xml.b( local('event::conference_room')) end

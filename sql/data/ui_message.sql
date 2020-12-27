@@ -275,6 +275,7 @@ INSERT INTO ui_message (ui_message) VALUES ('event::licence');
 INSERT INTO ui_message (ui_message) VALUES ('event::own::tab::coordinator');
 INSERT INTO ui_message (ui_message) VALUES ('event::own::tab::participant');
 INSERT INTO ui_message (ui_message) VALUES ('event::paper');
+INSERT INTO ui_message (ui_message) VALUES ('event::presentation_length');
 INSERT INTO ui_message (ui_message) VALUES ('event::public');
 INSERT INTO ui_message (ui_message) VALUES ('event::remark');
 INSERT INTO ui_message (ui_message) VALUES ('event::resources');

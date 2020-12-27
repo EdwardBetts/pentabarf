@@ -24,7 +24,8 @@ CREATE TABLE base.event (
   slides BOOL,
   remark TEXT,
   submission_notes TEXT,
-  licence TEXT
+  licence TEXT,
+  presentation_length INTERVAL NOT NULL DEFAULT '0:00:00'
 );
 
 CREATE TABLE event (
