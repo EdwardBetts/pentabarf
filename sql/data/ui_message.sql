@@ -265,6 +265,7 @@ INSERT INTO ui_message (ui_message) VALUES ('event::description::introduction');
 INSERT INTO ui_message (ui_message) VALUES ('event::duration');
 INSERT INTO ui_message (ui_message) VALUES ('event::event_id');
 INSERT INTO ui_message (ui_message) VALUES ('event::event_origin');
+INSERT INTO ui_message (ui_message) VALUES ('event::event_role_name');
 INSERT INTO ui_message (ui_message) VALUES ('event::event_state');
 INSERT INTO ui_message (ui_message) VALUES ('event::event_state_and_progress');
 INSERT INTO ui_message (ui_message) VALUES ('event::event_state_progress');

@@ -204,6 +204,40 @@ module ApplicationHelper
     end
   end
 
+  def event_own_table( events, options = {} )
+    xml = Builder::XmlMarkup.new
+    options[:id] ||= 'event_own_table'
+    xml.table(:id=>options[:id],:class=>'sortable') do
+      fields = [:event_state,:event_state_progress,:event_role_name,:conference_day,:start_time,:conference_room,:duration]
+      xml.thead do
+        xml.tr do
+          xml.th(local(:event),:colspan=>2)
+          fields.each do | field |
+            xml.th( local("event::#{field}") )
+          end
+        end
+      end
+      xml.tbody do
+        events.each do | event |
+          event_url = url_for({:controller=>:event,:action=>:edit,:event_id=>event.event_id})
+          xml.tr(:class=>event.event_state) do
+            xml.td do
+              xml.a({:href=>event_url}) do
+                xml.img({:src=>url_for(:controller=>'image',:action=>:event,:id=>event.event_id,:size=>"24x24"),:height=>24,:width=>24})
+              end
+            end
+            xml.td do
+              xml << format_event( event )
+            end
+            fields.each do | field |
+              xml.td do xml.a( event.send(field), {:href=>event_url}) end
+            end
+          end
+        end
+      end
+    end
+  end
+
   def rating_bar_small( rating, fields)
     xml = Builder::XmlMarkup.new
     xml.td(:class=>"rating-bar-small") do

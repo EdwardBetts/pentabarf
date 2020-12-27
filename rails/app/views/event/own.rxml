@@ -8,7 +8,7 @@ xml.div({:id=>'data'}) do
     xml.div(:id=>"content-#{tab}") do
       xml.fieldset do
         xml.legend local("own_events::tab::#{tab}")
-        xml << event_table( @events[tab],{:id=>"event_table_#{tab}"})
+        xml << event_own_table( @events[tab],{:id=>"event_table_#{tab}"})
       end
     end
   end

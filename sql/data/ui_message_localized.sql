@@ -564,6 +564,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_origin', 'de', 'Herkunft der Veranstaltung');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_origin', 'en', 'Event Origin');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_origin', 'pt', 'Origem do Evento');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_role_name', 'en', 'Event Role');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_state', 'de', 'Veranstaltungsstatus');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_state', 'en', 'Event state');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_state', 'pt', 'Estado do Evento');
