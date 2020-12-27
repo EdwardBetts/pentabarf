@@ -2,7 +2,7 @@
 CREATE OR REPLACE VIEW view_schedule_person AS
   SELECT
     person.person_id,
-    coalesce(person.public_name, coalesce(person.first_name || ' ', '') || person.last_name, person.nickname) AS name,
+    coalesce(person.public_name, coalesce(person.first_name || ' ', '') || person.last_name, person.nickname, person.first_name) AS name,
     conference_person.email,
     conference.conference_id,
     conference_person.conference_person_id,
@@ -32,5 +32,5 @@ CREATE OR REPLACE VIEW view_schedule_person AS
         event.conference_id = conference.conference_id AND
         event_person.event_role_state = 'confirmed'
     )
-  ORDER BY coalesce(person.public_name, coalesce(person.first_name || ' ', '') || person.last_name, person.nickname)
+  ORDER BY coalesce(person.public_name, coalesce(person.first_name || ' ', '') || person.last_name, person.nickname, person.first_name)
 ;

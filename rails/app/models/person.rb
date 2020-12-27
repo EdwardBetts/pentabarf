@@ -8,8 +8,10 @@ class Person < Momomoto::Table
         "#{first_name} #{last_name}"
       elsif last_name
         last_name
-      else
+      elsif nickname
         nickname
+      else
+	first_name
       end
     end
 
