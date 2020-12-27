@@ -23,7 +23,7 @@ SELECT
         event_person
         INNER JOIN view_person USING (person_id)
       WHERE
-        event_person.event_role IN ('speaker','moderator') AND
+        event_person.event_role IN ('speaker','moderator','host') AND
         event_person.event_role_state = 'confirmed' AND
         event_person.event_id = event.event_id
       ORDER BY view_person.name, event_person.person_id
@@ -34,7 +34,7 @@ SELECT
         event_person
         INNER JOIN view_person USING (person_id)
       WHERE
-        event_person.event_role IN ('speaker','moderator') AND
+        event_person.event_role IN ('speaker','moderator','host') AND
         event_person.event_role_state = 'confirmed' AND
         event_person.event_id = event.event_id
       ORDER BY view_person.name, event_person.person_id

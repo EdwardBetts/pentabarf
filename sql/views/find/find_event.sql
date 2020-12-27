@@ -57,7 +57,14 @@ CREATE OR REPLACE VIEW view_find_event AS
       WHERE 
         event.event_id = event_person.event_id AND 
         event_person.event_role = 'coordinator'
-    ) AS coordinators
+    ) AS coordinators,
+    ARRAY( 
+      SELECT person_id 
+      FROM event_person
+      WHERE 
+        event.event_id = event_person.event_id AND 
+        event_person.event_role = 'host'
+    ) AS hosts
   FROM event
     INNER JOIN conference USING (conference_id)
     INNER JOIN event_state_localized USING (event_state)

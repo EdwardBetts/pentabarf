@@ -30,7 +30,7 @@ CREATE OR REPLACE FUNCTION conflict.conflict_event_person_event_time_speaker_vis
       cd2.conference_day_id = e2.conference_day_id
     )
   WHERE
-    ep1.event_role IN ('speaker','moderator') AND
+    ep1.event_role IN ('speaker','moderator','host') AND
     ep1.event_role_state = 'confirmed' AND
     (cd1.conference_day + e1.start_time, e1.duration) OVERLAPS (cd2.conference_day + e2.start_time, e2.duration) AND
     -- OVERLAPS also returns true when the end of interval 1 matches the start of interval 2

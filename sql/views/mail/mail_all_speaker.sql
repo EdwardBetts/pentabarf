@@ -12,6 +12,6 @@ CREATE OR REPLACE VIEW view_mail_all_speaker AS
              person.email IS NOT NULL)
          INNER JOIN view_person ON (
              view_person.person_id = event_person.person_id )
-   WHERE event_role IN ('speaker','moderator')
+   WHERE event_role IN ('speaker','moderator','host')
 ;
 

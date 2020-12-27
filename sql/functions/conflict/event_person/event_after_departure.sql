@@ -21,7 +21,7 @@ CREATE OR REPLACE FUNCTION conflict.conflict_event_person_event_after_departure(
             conference.conference_id = cur_conference_id
         )
       WHERE
-        event_person.event_role IN ('speaker','moderator') AND
+        event_person.event_role IN ('speaker','moderator','host') AND
         event_person.event_role_state = 'confirmed' AND
         event.event_state = 'accepted' AND (
         (

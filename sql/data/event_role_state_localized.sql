@@ -44,3 +44,10 @@ INSERT INTO event_role_state_localized (event_role, event_role_state, translated
 INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('speaker', 'unclear', 'de', 'Unklar');
 INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('speaker', 'unclear', 'en', 'unclear');
 INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('speaker', 'unclear', 'pt', 'incerto');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'canceled', 'en', 'canceled');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'confirmed', 'en', 'confirmed');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'declined', 'en', 'declined');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'enquired', 'en', 'enquired');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'idea', 'en', 'idea');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'offer', 'en', 'offer');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'unclear', 'en', 'unclear');

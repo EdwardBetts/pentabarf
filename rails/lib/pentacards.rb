@@ -95,14 +95,15 @@ class Pentacards
     # Draw Persons box
     persons = View_event_person.select({:event_id => event.event_id, :translated => @language})
 
-    speakers, moderators, coordinators = [], [], []
+    speakers, moderators, hosts, coordinators = [], [], [], []
     persons.each do |person|
       speakers << "<b>#{person.event_role_name}</b>: #{person.name}\n" if person.event_role == 'speaker'
       moderators << "<b>#{person.event_role_name}</b>: #{person.name}\n" if person.event_role == 'moderator'
+      hosts << "<b>#{person.event_role_name}</b>: #{person.name}\n" if person.event_role == 'host'
       coordinators << "<b>#{person.event_role_name}</b>: #{person.name}\n" if person.event_role == 'coordinator'
     end
 
-    persons = speakers + moderators + coordinators
+    persons = speakers + moderators + hosts + coordinators
 
     draw_text_box( col, row, { :text => persons.join(''),
                                :width => 130,

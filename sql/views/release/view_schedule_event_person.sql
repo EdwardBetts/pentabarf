@@ -18,7 +18,7 @@ CREATE OR REPLACE VIEW release.view_schedule_event_person AS
     INNER JOIN release.view_schedule_event USING (conference_release_id,event_id,translated)
     INNER JOIN release.view_person USING (conference_release_id,person_id)
   WHERE
-    event_person.event_role IN ('speaker','moderator') AND
+    event_person.event_role IN ('speaker','moderator','host') AND
     event_person.event_role_state = 'confirmed'
   ORDER BY title, subtitle, name
 ;

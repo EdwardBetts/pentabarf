@@ -20,7 +20,7 @@ CREATE OR REPLACE VIEW view_report_missing AS
         INNER JOIN conference USING (conference_id)
         INNER JOIN conference_day USING (conference_day_id)
       WHERE event_person.person_id = view_person.person_id AND
-        event_person.event_role IN ('speaker','moderator') AND
+        event_person.event_role IN ('speaker','moderator','host') AND
         event_person.event_role_state = 'confirmed' AND
         conference_day.conference_day + event.start_time + conference.day_change BETWEEN now() AND now() + '3 hour'::INTERVAL
      )

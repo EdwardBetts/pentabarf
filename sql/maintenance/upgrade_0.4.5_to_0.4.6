@@ -198,4 +198,585 @@ CREATE OR REPLACE VIEW view_schedule_person AS
   ORDER BY coalesce(person.public_name, coalesce(person.first_name || ' ', '') || person.last_name, person.nickname, person.first_name)
 ;
 
+INSERT INTO event_role (event_role, rank, participant, public) VALUES ('host', 3, true, false);
+UPDATE event_role SET rank = 4 where event_role = 'coordinator';
+UPDATE event_role SET rank = 5 where event_role = 'visitor';
+
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('canceled', 'host', 3);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('confirmed', 'host', 5);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('declined', 'host', 4);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('enquired', 'host', 2);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('idea', 'host', 1);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('offer', 'host', 7);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('unclear', 'host', 6);
+
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'canceled', 'en', 'canceled');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'confirmed', 'en', 'confirmed');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'declined', 'en', 'declined');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'enquired', 'en', 'enquired');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'idea', 'en', 'idea');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'offer', 'en', 'offer');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('host', 'unclear', 'en', 'unclear');
+
+INSERT INTO event_role_localized (event_role, translated, name) VALUES ('host', 'en', 'Speaker Host');
+
+CREATE OR REPLACE FUNCTION own_events( person_id INTEGER) RETURNS SETOF INTEGER AS $$
+  SELECT event_id
+    FROM event
+   WHERE EXISTS (SELECT 1
+                   FROM event_person
+                  WHERE
+                    event_person.person_id = $1 AND
+                    event_person.event_id = event.event_id AND
+                    event_person.event_role IN ('speaker','moderator','coordinator','submitter','host'));
+$$ LANGUAGE SQL RETURNS NULL ON NULL INPUT;
+
+CREATE OR REPLACE FUNCTION own_conference_events( person_id INTEGER, conference_id INTEGER) RETURNS SETOF INTEGER AS $$
+  SELECT event_id
+    FROM event
+   WHERE conference_id = $2 AND
+         EXISTS (SELECT 1
+                   FROM event_person
+                  WHERE
+                    event_person.person_id = $1 AND
+                    event_person.event_id = event.event_id AND
+                    event_person.event_role IN ('speaker','moderator','coordinator','submitter','host'));
+$$ LANGUAGE SQL RETURNS NULL ON NULL INPUT;
+
+CREATE OR REPLACE FUNCTION conflict.conflict_event_person_event_after_departure(integer) RETURNS SETOF conflict.conflict_event_person AS $$
+  DECLARE
+    cur_conference_id ALIAS FOR $1;
+    cur_conflict conflict.conflict_event_person%rowtype;
+  BEGIN
+
+    FOR cur_conflict IN
+      SELECT event_person.event_id, event_person.person_id
+        FROM event_person
+        INNER JOIN event ON (
+          event.event_id = event_person.event_id AND
+          event.start_time IS NOT NULL
+        )
+        INNER JOIN conference_person USING (person_id, conference_id)
+        INNER JOIN conference_day USING (conference_day_id)
+        INNER JOIN conference_person_travel USING (conference_person_id)
+        INNER JOIN conference ON (
+            event.conference_id = conference.conference_id AND
+            conference.conference_id = cur_conference_id
+        )
+      WHERE
+        event_person.event_role IN ('speaker','moderator','host') AND
+        event_person.event_role_state = 'confirmed' AND
+        event.event_state = 'accepted' AND (
+        (
+          conference_person_travel.departure_date IS NOT NULL AND
+          conference_person_travel.departure_time IS NULL AND
+          conference_person_travel.departure_date < conference_day.conference_day
+        ) OR (
+          conference_person_travel.departure_date IS NOT NULL AND
+          conference_person_travel.departure_time IS NOT NULL AND
+          (conference_person_travel.departure_date + conference_person_travel.departure_time)::timestamp < (conference_day.conference_day + event.start_time + conference.day_change + event.duration)::timestamp
+        ) )
+    LOOP
+      RETURN NEXT cur_conflict;
+    END LOOP;
+    RETURN;
+  END;
+$$ LANGUAGE 'plpgsql' RETURNS NULL ON NULL INPUT;
+
+
+CREATE OR REPLACE FUNCTION conflict.conflict_event_person_event_before_arrival(integer) RETURNS SETOF conflict.conflict_event_person AS $$
+  DECLARE
+    cur_conference_id ALIAS FOR $1;
+    cur_conflict conflict.conflict_event_person%rowtype;
+  BEGIN
+
+    FOR cur_conflict IN
+      SELECT event_person.event_id, event_person.person_id
+        FROM event_person
+        INNER JOIN event ON (
+          event.event_id = event_person.event_id AND
+          event.start_time IS NOT NULL
+        )
+        INNER JOIN conference_person USING (person_id, conference_id)
+        INNER JOIN conference_day USING (conference_day_id)
+        INNER JOIN conference_person_travel USING (conference_person_id)
+        INNER JOIN conference ON (
+            event.conference_id = conference.conference_id AND
+            conference.conference_id = cur_conference_id
+        )
+      WHERE
+        event_person.event_role IN ('speaker','moderator','host') AND
+        event_person.event_role_state = 'confirmed' AND
+        event.event_state = 'accepted' AND 
+        ( (
+            conference_person_travel.arrival_date IS NOT NULL AND
+            conference_person_travel.arrival_time IS NULL AND
+            conference_person_travel.arrival_date > conference_day.conference_day
+          ) OR (
+            conference_person_travel.arrival_date IS NOT NULL AND
+            conference_person_travel.arrival_time IS NOT NULL AND
+            (conference_person_travel.arrival_date + conference_person_travel.arrival_time)::timestamp > (conference_day.conference_day + event.start_time + conference.day_change)::timestamp
+        ) )
+    LOOP
+      RETURN NEXT cur_conflict;
+    END LOOP;
+    RETURN;
+  END;
+$$ LANGUAGE 'plpgsql' RETURNS NULL ON NULL INPUT;
+
+CREATE OR REPLACE FUNCTION conflict.conflict_event_person_event_time_speaker_speaker(integer) RETURNS SETOF conflict.conflict_event_person_event AS $$
+  SELECT
+    ep1.person_id AS person_id,
+    ep1.event_id AS event_id1,
+    ep2.event_id AS event_id2
+  FROM
+    event_person AS ep1
+    INNER JOIN event AS e1 ON (
+      e1.conference_id = $1 AND
+      e1.event_id = ep1.event_id AND
+      e1.start_time IS NOT NULL AND
+      e1.event_state = 'accepted' AND
+      e1.event_state_progress <> 'canceled'
+    )
+    INNER JOIN conference_day AS cd1 USING (conference_day_id)
+    INNER JOIN event_person AS ep2 ON (
+      ep2.person_id = ep1.person_id AND
+      ep2.event_role IN ('speaker','moderator','host') AND
+      ep2.event_role_state = 'confirmed' AND
+      ep2.event_id <> ep1.event_id
+    )
+    INNER JOIN event AS e2 ON (
+      e2.conference_id = $1 AND
+      e2.event_id = ep2.event_id AND
+      e2.start_time IS NOT NULL AND
+      e2.event_state = 'accepted' AND
+      e2.event_state_progress <> 'canceled'
+    )
+    INNER JOIN conference_day AS cd2 ON (
+      cd2.conference_day_id = e2.conference_day_id
+    )
+  WHERE
+    ep1.event_role IN ('speaker','moderator','host') AND
+    ep1.event_role_state = 'confirmed' AND
+    (cd1.conference_day + e1.start_time, e1.duration) OVERLAPS (cd2.conference_day + e2.start_time, e2.duration) AND
+    -- OVERLAPS also returns true when the end of interval 1 matches the start of interval 2
+    -- thats why we exclude those cases explicitly
+    cd1.conference_day + e1.start_time + e1.duration <> cd2.conference_day + e2.start_time AND
+    cd2.conference_day + e2.start_time + e2.duration <> cd1.conference_day + e1.start_time;
+
+$$ LANGUAGE SQL RETURNS NULL ON NULL INPUT;
+
+CREATE OR REPLACE FUNCTION conflict.conflict_event_person_event_time_speaker_visitor(integer) RETURNS SETOF conflict.conflict_event_person_event AS $$
+  SELECT
+    ep1.person_id AS person_id,
+    ep1.event_id AS event_id1,
+    ep2.event_id AS event_id2
+  FROM
+    event_person AS ep1
+    INNER JOIN event AS e1 ON (
+      e1.conference_id = $1 AND
+      e1.event_id = ep1.event_id AND
+      e1.start_time IS NOT NULL AND
+      e1.event_state = 'accepted' AND
+      e1.event_state_progress <> 'canceled'
+    )
+    INNER JOIN conference_day AS cd1 USING (conference_day_id)
+    INNER JOIN event_person AS ep2 ON (
+      ep2.person_id = ep1.person_id AND
+      ep2.event_role = 'visitor' AND
+      ep2.event_id <> ep1.event_id
+    )
+    INNER JOIN event AS e2 ON (
+      e2.conference_id = $1 AND
+      e2.event_id = ep2.event_id AND
+      e2.start_time IS NOT NULL AND
+      e2.event_state = 'accepted' AND
+      e2.event_state_progress <> 'canceled'
+    )
+    INNER JOIN conference_day AS cd2 ON (
+      cd2.conference_day_id = e2.conference_day_id
+    )
+  WHERE
+    ep1.event_role IN ('speaker','moderator','host') AND
+    ep1.event_role_state = 'confirmed' AND
+    (cd1.conference_day + e1.start_time, e1.duration) OVERLAPS (cd2.conference_day + e2.start_time, e2.duration) AND
+    -- OVERLAPS also returns true when the end of interval 1 matches the start of interval 2
+    -- thats why we exclude those cases explicitly
+    cd1.conference_day + e1.start_time + e1.duration <> cd2.conference_day + e2.start_time AND
+    cd2.conference_day + e2.start_time + e2.duration <> cd1.conference_day + e1.start_time;
+    
+$$ LANGUAGE SQL RETURNS NULL ON NULL INPUT;
+
+CREATE OR REPLACE FUNCTION related_event_speaker(integer) RETURNS SETOF INTEGER AS '
+  DECLARE 
+    cur_event_id ALIAS FOR $1;
+    cur_event RECORD;       
+  BEGIN                     
+        
+    FOR cur_event IN
+      SELECT event_id FROM event
+        WHERE event.conference_id = (SELECT conference_id 
+                                       FROM event 
+                                      WHERE event_id = cur_event_id) AND
+              event.event_id <> cur_event_id AND
+              event.event_id IN ( SELECT event_id 
+                                    FROM event_person
+                                   WHERE event_role IN (''speaker'',''moderator'',''host'') AND
+                                         person_id IN ( SELECT person_id 
+                                                          FROM event_person 
+                                                         WHERE event_role IN (''speaker'', ''moderator'', ''host'') AND 
+                                                               event_id = cur_event_id ) )
+    LOOP
+      RETURN NEXT cur_event;
+    END LOOP;
+    
+    RETURN;
+  END;
+' LANGUAGE 'plpgsql' RETURNS NULL ON NULL INPUT;
+
+CREATE OR REPLACE VIEW view_mail_accepted_speaker AS
+  SELECT view_person.person_id,
+         view_person.name,
+         view_person.email,
+         view_person.spam,
+         event.event_id,
+         event.title AS event_title,
+         event.subtitle AS event_subtitle,
+         conference.conference_id,
+         conference.acronym AS conference_acronym,
+         conference.title AS conference_title
+    FROM event_person
+         INNER JOIN view_person ON (
+             view_person.person_id = event_person.person_id AND
+             view_person.email IS NOT NULL )
+         INNER JOIN event ON (
+             event.event_id = event_person.event_id )
+         INNER JOIN conference ON (
+             conference.conference_id = event.conference_id )
+    WHERE
+        event.event_state = 'accepted' AND
+        event.event_state_progress <> 'canceled' AND
+        event_person.event_role IN ('speaker', 'moderator', 'host') AND
+        event_person.event_role_state = 'confirmed'
+ORDER BY view_person.person_id, event.event_id
+;
+
+CREATE OR REPLACE VIEW view_mail_all_speaker AS
+  SELECT DISTINCT ON ( person.person_id )
+         person.person_id,
+         view_person.name,
+         view_person.email,
+         view_person.spam
+    FROM event_person
+         INNER JOIN person ON (
+             person.person_id = event_person.person_id AND
+             person.email IS NOT NULL)
+         INNER JOIN view_person ON (
+             view_person.person_id = event_person.person_id )
+   WHERE event_role IN ('speaker','moderator','host')
+;            
+
+CREATE OR REPLACE VIEW view_mail_missing_slides AS
+  SELECT view_person.person_id,
+         view_person.name,
+         view_person.email,
+         view_person.spam,
+         event.event_id,
+         event.title AS event_title,
+         event.subtitle AS event_subtitle,
+         conference.conference_id,
+         conference.acronym AS conference_acronym,
+         conference.title AS conference_title
+    FROM event_person
+         INNER JOIN view_person ON (
+             view_person.person_id = event_person.person_id AND
+             view_person.email IS NOT NULL )
+         INNER JOIN event ON (
+             event.event_id = event_person.event_id AND
+             event.slides = 't' )
+         INNER JOIN conference ON (
+             conference.conference_id = event.conference_id )
+  WHERE NOT EXISTS (SELECT 1
+                      FROM event_attachment
+                     WHERE event_attachment.event_id = event.event_id AND
+                           event_attachment.attachment_type = 'slides' ) AND
+        event.event_state = 'accepted' AND
+        event.event_state_progress = 'confirmed' AND
+        event_person.event_role IN ('speaker','moderator','host') AND
+        event_person.event_role_state = 'confirmed'
+ORDER BY view_person.person_id, event.event_id
+;
+
+CREATE OR REPLACE VIEW release.view_schedule_event_person AS
+  SELECT
+    event_person.event_person_id,
+    event_person.conference_release_id,
+    event_person.event_id,
+    view_schedule_event.conference_id,
+    view_schedule_event.title,
+    view_schedule_event.subtitle,
+    event_person.person_id,
+    view_person.name,
+    event_person.event_role,
+    event_role_localized.name AS event_role_name,
+    event_role_localized.translated,
+    event_person.event_role_state
+  FROM   
+    release.event_person
+    INNER JOIN event_role_localized USING (event_role)
+    INNER JOIN release.view_schedule_event USING (conference_release_id,event_id,translated)
+    INNER JOIN release.view_person USING (conference_release_id,person_id)
+  WHERE      
+    event_person.event_role IN ('speaker','moderator','host') AND
+    event_person.event_role_state = 'confirmed'
+  ORDER BY title, subtitle, name
+;      
+
+CREATE OR REPLACE VIEW release.view_schedule_person AS
+  SELECT
+    person.conference_release_id,
+    person.person_id,
+    coalesce(person.public_name, coalesce(person.first_name || ' ', '') || person.last_name, person.nickname) AS name,
+    conference_person.email,
+    conference.conference_id,
+    conference_person.conference_person_id,
+    conference_person.abstract,
+    conference_person.description
+  FROM
+    release.person
+    INNER JOIN release.conference USING(conference_release_id)
+    LEFT OUTER JOIN release.conference_person USING(conference_release_id,person_id)
+  WHERE  
+    EXISTS (
+      SELECT 1 
+      FROM
+        release.event_person
+        INNER JOIN release.event USING(conference_release_id,event_id)
+        INNER JOIN release.view_schedule_day USING(conference_release_id,conference_day_id)
+        INNER JOIN release.view_schedule_room USING(conference_release_id,conference_room_id)
+      WHERE
+        event_person.conference_release_id = person.conference_release_id AND
+        event_person.person_id = person.person_id AND
+        event_person.event_role IN ('speaker','moderator','host') AND
+        event_person.event_role_state = 'confirmed' AND
+        event.public = TRUE AND
+        event.event_state = 'accepted' AND
+        event.event_state_progress = 'reconfirmed'
+    )
+  ORDER BY coalesce(person.public_name, coalesce(person.first_name || ' ', '') || person.last_name, person.nickname)
+;
+
+CREATE OR REPLACE VIEW view_report_arrived AS
+  SELECT 
+    view_person.person_id,
+    view_person.name,
+    conference_person.conference_id,
+    conference_person.arrived
+  FROM view_person
+    INNER JOIN conference_person USING (person_id)
+  WHERE 
+    conference_person.arrived = TRUE AND
+    EXISTS (SELECT 1
+      FROM event_person
+        INNER JOIN event ON (
+          event_person.event_id = event.event_id AND
+          event.event_state = 'accepted' AND
+          event.event_state_progress = 'reconfirmed' AND
+          event.conference_id = conference_person.conference_id)
+      WHERE event_person.person_id = view_person.person_id AND
+        event_person.event_role IN ('speaker','moderator','host') AND
+        event_person.event_role_state = 'confirmed' )
+   ORDER BY lower(name)
+;     
+
+CREATE OR REPLACE VIEW view_report_missing AS
+  SELECT
+    view_person.person_id,
+    view_person.name,
+    conference_person.conference_id,
+    conference_person.arrived
+  FROM view_person
+    INNER JOIN conference_person USING (person_id)
+  WHERE
+    arrived = FALSE AND
+    EXISTS (
+      SELECT 1
+      FROM event_person
+        INNER JOIN event ON (
+          event_person.event_id = event.event_id AND
+          event.conference_id = conference_person.conference_id AND
+          event.event_state = 'accepted' AND
+          event.event_state_progress = 'reconfirmed' )
+        INNER JOIN conference USING (conference_id)
+        INNER JOIN conference_day USING (conference_day_id)
+      WHERE event_person.person_id = view_person.person_id AND
+        event_person.event_role IN ('speaker','moderator','host') AND
+        event_person.event_role_state = 'confirmed' AND
+        conference_day.conference_day + event.start_time + conference.day_change BETWEEN now() AND now() + '3 hour'::INTERVAL
+     )
+   ORDER BY lower(name)
+;
+
+CREATE OR REPLACE VIEW view_report_not_arrived AS
+  SELECT
+    view_person.person_id,
+    view_person.name,
+    conference_person.conference_id,
+    conference_person.arrived
+  FROM view_person
+    INNER JOIN conference_person USING (person_id)
+  WHERE
+    conference_person.arrived = FALSE AND
+    EXISTS (SELECT 1
+      FROM event_person
+        INNER JOIN event ON (
+          event_person.event_id = event.event_id AND
+          event.event_state = 'accepted' AND
+          event.event_state_progress = 'reconfirmed' AND
+          event.conference_id = conference_person.conference_id)
+      WHERE 
+        event_person.person_id = view_person.person_id AND
+        event_person.event_role IN ('speaker','moderator','host') AND
+        event_person.event_role_state = 'confirmed' )
+  ORDER BY lower(name)
+;       
+        
+CREATE OR REPLACE VIEW view_own_events_participant AS
+SELECT
+  event.event_id,
+  event.conference_id,
+  (event.start_time + conference.day_change)::interval AS start_time,
+  event.conference_day_id,
+  conference_day.conference_day,
+  conference_day.name AS conference_day_name,
+  event.conference_room_id,
+  conference_room.conference_room,
+  event.event_state,
+  event.event_state_progress,
+  event_state_localized.translated,
+  event_state_localized.name AS event_state_name,
+  event_state_progress_localized.name AS event_state_progress_name,
+  event.title,
+  event.subtitle,
+  event.duration,
+  array_to_string(ARRAY(
+    SELECT view_person.person_id
+      FROM
+        event_person
+        INNER JOIN view_person USING (person_id)
+      WHERE
+        event_person.event_role IN ('speaker','moderator','host') AND
+        event_person.event_role_state = 'confirmed' AND
+        event_person.event_id = event.event_id
+      ORDER BY view_person.name, event_person.person_id
+    ), E'\n'::text) AS speaker_ids,
+  array_to_string(ARRAY(
+    SELECT view_person.name
+      FROM
+        event_person
+        INNER JOIN view_person USING (person_id)
+      WHERE
+        event_person.event_role IN ('speaker','moderator','host') AND
+        event_person.event_role_state = 'confirmed' AND
+        event_person.event_id = event.event_id
+      ORDER BY view_person.name, event_person.person_id
+    ), E'\n'::text) AS speakers,
+  event_role_localized.event_role,
+  event_role_localized.name AS event_role_name,
+  event_role_state_localized.event_role_state,
+  event_role_state_localized.name AS event_role_state_name,
+  event_person.person_id
+FROM
+  event
+  INNER JOIN event_person USING (event_id)
+  INNER JOIN conference USING (conference_id)
+  INNER JOIN event_state_localized USING (event_state)
+  INNER JOIN event_state_progress_localized USING (event_state,event_state_progress,translated)
+  INNER JOIN event_role_localized USING (event_role,translated)
+  INNER JOIN event_role_state_localized USING (event_role,event_role_state,translated)
+  INNER JOIN event_role ON (
+    event_role.event_role = event_person.event_role AND
+    event_role.participant = TRUE )
+  LEFT OUTER JOIN conference_day USING (conference_day_id)
+  LEFT OUTER JOIN conference_room USING (conference_room_id)
+;
+
+CREATE OR REPLACE VIEW view_find_event AS
+  SELECT
+    event.event_id,
+    event.conference_id,
+    event.title,
+    event.subtitle,
+    event.slug,
+    event.abstract,
+    event.description,
+    event.duration,
+    event.event_origin,
+    event.conference_track_id,
+    event.event_state,
+    event.event_state_progress,
+    event.event_state || ' ' || event.event_state_progress AS event_state_and_progress,
+    event.event_type,
+    event.language,
+    event.conference_room_id,
+    conference_room.conference_room,
+    event.conference_day_id,
+    conference_day.conference_day,
+    conference_day.name AS conference_day_name,
+    (event.start_time + conference.day_change)::interval AS start_time,
+    event.public,
+    conference_track.conference_track,
+    event_state_localized.translated,
+    event_state_localized.name AS event_state_name,
+    event_state_progress_localized.name AS event_state_progress_name,
+    event_image.mime_type,
+    mime_type.file_extension,
+    array_to_string(ARRAY(
+      SELECT view_person.person_id
+        FROM
+          event_person
+          INNER JOIN view_person USING (person_id)
+        WHERE
+          event_person.event_role IN ('speaker','moderator') AND
+          event_person.event_role_state = 'confirmed' AND
+          event_person.event_id = event.event_id
+        ORDER BY view_person.name, event_person.person_id
+      ), E'\n'::text) AS speaker_ids,
+    array_to_string(ARRAY(
+      SELECT view_person.name
+        FROM
+          event_person
+          INNER JOIN view_person USING (person_id)
+        WHERE
+          event_person.event_role IN ('speaker','moderator') AND
+          event_person.event_role_state = 'confirmed' AND
+          event_person.event_id = event.event_id
+        ORDER BY view_person.name, event_person.person_id
+      ), E'\n'::text) AS speakers,
+    ARRAY( 
+      SELECT person_id 
+      FROM event_person
+      WHERE 
+        event.event_id = event_person.event_id AND 
+        event_person.event_role = 'coordinator'
+    ) AS coordinators,
+    ARRAY( 
+      SELECT person_id 
+      FROM event_person
+      WHERE 
+        event.event_id = event_person.event_id AND 
+        event_person.event_role = 'host'
+    ) AS hosts
+  FROM event
+    INNER JOIN conference USING (conference_id)
+    INNER JOIN event_state_localized USING (event_state)
+    INNER JOIN event_state_progress_localized USING (translated,event_state,event_state_progress)
+    LEFT OUTER JOIN conference_day USING (conference_day_id)
+    LEFT OUTER JOIN conference_track USING (conference_track_id)
+    LEFT OUTER JOIN conference_room USING (conference_room_id)
+    LEFT OUTER JOIN event_image USING (event_id)
+    LEFT OUTER JOIN mime_type USING (mime_type);
+
+
+
 COMMIT;

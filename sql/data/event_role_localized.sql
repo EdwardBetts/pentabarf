@@ -8,6 +8,7 @@ INSERT INTO event_role_localized (event_role, translated, name) VALUES ('attende
 INSERT INTO event_role_localized (event_role, translated, name) VALUES ('coordinator', 'de', 'Koordinator');
 INSERT INTO event_role_localized (event_role, translated, name) VALUES ('coordinator', 'en', 'Coordinator');
 INSERT INTO event_role_localized (event_role, translated, name) VALUES ('coordinator', 'pt', 'Coordenador');
+INSERT INTO event_role_localized (event_role, translated, name) VALUES ('host', 'en', 'Speaker Host');
 INSERT INTO event_role_localized (event_role, translated, name) VALUES ('moderator', 'de', 'Moderator');
 INSERT INTO event_role_localized (event_role, translated, name) VALUES ('moderator', 'en', 'Moderator');
 INSERT INTO event_role_localized (event_role, translated, name) VALUES ('moderator', 'pt', 'Moderador');

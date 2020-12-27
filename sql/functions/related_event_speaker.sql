@@ -13,10 +13,10 @@ CREATE OR REPLACE FUNCTION related_event_speaker(integer) RETURNS SETOF INTEGER 
               event.event_id <> cur_event_id AND
               event.event_id IN ( SELECT event_id 
                                     FROM event_person
-                                   WHERE event_role IN (''speaker'',''moderator'') AND
+                                   WHERE event_role IN (''speaker'',''moderator'',''host'') AND
                                          person_id IN ( SELECT person_id 
                                                           FROM event_person 
-                                                         WHERE event_role IN (''speaker'', ''moderator'') AND 
+                                                         WHERE event_role IN (''speaker'', ''moderator'', ''host'') AND 
                                                                event_id = cur_event_id ) )
     LOOP
       RETURN NEXT cur_event;

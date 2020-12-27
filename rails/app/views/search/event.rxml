@@ -22,6 +22,7 @@ xml.div({:id=>:data}) do
     [:conference_track_id,local('conference_track'),:list, @current_conference.tracks.map{|t| [t.conference_track_id,t.conference_track]}, {:with_empty=>true} ],
     [:conference_room_id ,local('conference_room'),:list, @current_conference.rooms.map{|r| [r.conference_room_id, r.conference_room]}, {:with_empty=>true} ],
     [:coordinators,local('coordinators'),:list, View_event_person.select({:event_role=>'coordinator',:conference_id=>@current_conference.conference_id},{:distinct=>[:name,:person_id]}).map{|p| [p.person_id,p.name]} ],
+    [:hosts,local('hosts'),:list, View_event_person.select({:event_role=>['host'],:conference_id=>@current_conference.conference_id},{:distinct=>[:name,:person_id]}).map{|p| [p.person_id,p.name]} ],
     [:speakers,local('speakers'),:list, View_event_person.select({:event_role=>['speaker','moderator'],:conference_id=>@current_conference.conference_id},{:distinct=>[:name,:person_id]}).map{|p| [p.person_id,p.name]} ]
   ]
 

@@ -23,7 +23,7 @@ CREATE OR REPLACE VIEW release.view_schedule_person AS
       WHERE
         event_person.conference_release_id = person.conference_release_id AND
         event_person.person_id = person.person_id AND
-        event_person.event_role IN ('speaker','moderator') AND
+        event_person.event_role IN ('speaker','moderator','host') AND
         event_person.event_role_state = 'confirmed' AND
         event.public = TRUE AND
         event.event_state = 'accepted' AND

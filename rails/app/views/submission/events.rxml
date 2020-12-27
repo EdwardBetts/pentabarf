@@ -5,6 +5,7 @@ xml.table do
     xml.tr do
       xml.th(local('event::title'),{:colspan=>2})
       xml.th(local('event::event_state'))
+      xml.th(local('event_person::event_role'))
     end
   end
   xml.tbody do
@@ -24,6 +25,9 @@ xml.table do
         end
         xml.td do
           xml.a(event.event_state,{:href=>url_for(:action=>:event,:id=>event.event_id)})
+        end
+        xml.td do
+          xml.text!(event.event_role_name)
         end
       end
     end

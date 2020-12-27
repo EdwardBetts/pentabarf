@@ -18,7 +18,7 @@ CREATE OR REPLACE VIEW view_report_not_arrived AS
           event.conference_id = conference_person.conference_id)
       WHERE 
         event_person.person_id = view_person.person_id AND
-        event_person.event_role IN ('speaker','moderator') AND
+        event_person.event_role IN ('speaker','moderator','host') AND
         event_person.event_role_state = 'confirmed' )
   ORDER BY lower(name)
 ;
