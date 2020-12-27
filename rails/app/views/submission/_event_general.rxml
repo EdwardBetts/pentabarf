@@ -84,12 +84,7 @@ xml.div(:id=>'content-general') do
       @event.duration = d[@conference.default_timeslots - 1] if not @event.duration
       xml << select_row( @event, :duration, d, {:selected=>@event.duration.strftime('%H:%M:%S')} )
 
-      xml.tr do
-        xml.td do xml.b( local('event::presentation_length')) end
-        xml.td do
-          xml.text! @event.presentation_length.strftime('%H:%M:%S')
-        end
-      end
+      xml << text_field_row( @event, :presentation_length, {:size=>8} )
 
       xml.tr do
         xml.td do xml.b( local('event::conference_room')) end
