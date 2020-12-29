@@ -788,4 +788,13 @@ CREATE OR REPLACE VIEW view_event AS
 
 ALTER TABLE event ADD CONSTRAINT presentation_shorter_than_duration CHECK (presentation_length <= duration AND presentation_length >= '00:00:00');
 
+INSERT INTO im_type (im_type, scheme, rank) VALUES ('signal', 'signal', 7);
+INSERT INTO im_type (im_type, scheme, rank) VALUES ('facebook', 'facebook', 8);
+INSERT INTO im_type (im_type, scheme, rank) VALUES ('telegram', 'telegram', 9);
+INSERT INTO im_type (im_type, scheme, rank) VALUES ('skype', 'skype', 10);
+INSERT INTO im_type_localized (im_type, translated, name) VALUES ('signal', 'en', 'Signal');
+INSERT INTO im_type_localized (im_type, translated, name) VALUES ('facebook', 'en', 'Facebook');
+INSERT INTO im_type_localized (im_type, translated, name) VALUES ('telegram', 'en', '|Telegram');
+INSERT INTO im_type_localized (im_type, translated, name) VALUES ('skype', 'en', 'Skype');
+
 COMMIT;

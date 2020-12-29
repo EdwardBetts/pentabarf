@@ -14,3 +14,7 @@ INSERT INTO im_type_localized (im_type, translated, name) VALUES ('msn', 'de', '
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('msn', 'en', 'MSN');
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('yahoo', 'de', 'Yahoo');
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('yahoo', 'en', 'Yahoo');
+INSERT INTO im_type_localized (im_type, translated, name) VALUES ('signal', 'en', 'Signal');
+INSERT INTO im_type_localized (im_type, translated, name) VALUES ('facebook', 'en', 'Facebook');
+INSERT INTO im_type_localized (im_type, translated, name) VALUES ('telegram', 'en', '|Telegram');
+INSERT INTO im_type_localized (im_type, translated, name) VALUES ('skype', 'en', 'Skype');
