@@ -25,7 +25,8 @@ CREATE TABLE base.event (
   remark TEXT,
   submission_notes TEXT,
   licence TEXT,
-  presentation_length INTERVAL NOT NULL DEFAULT '0:00:00'
+  presentation_length INTERVAL NOT NULL DEFAULT '0:00:00',
+  sreview_url TEXT
 );
 
 CREATE TABLE event (

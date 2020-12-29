@@ -604,6 +604,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::slug', 'de', 'Slug');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::slug', 'en', 'Slug');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::slug', 'pt', 'Slug');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::sreview_url', 'en', 'Pre-recorded Video Upload URL');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::start_time', 'de', 'Zeit');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::start_time', 'en', 'Start time');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::start_time', 'pt', 'Horário Inicial');

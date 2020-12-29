@@ -23,6 +23,10 @@ xml.div(:id=>'content-schedule') do
 
       xml << text_field_row( @event, :presentation_length, {:size=>8} )
 
+      if @event.sreview_url && POPE.permission?('admin::login')
+        xml << text_field_row( @event, :sreview_url, {:size=>70} )
+      end
+
       xml << select_row( @event, :conference_room_id, @conference.rooms.map{|r| [r.conference_room_id,r.conference_room]},{:with_empty=>true})
       xml << check_box_row( @event, :public )
     end

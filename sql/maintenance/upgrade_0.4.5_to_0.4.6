@@ -58,6 +58,7 @@ ALTER TABLE base.event ADD COLUMN licence TEXT;
 ALTER TABLE base.person ADD COLUMN contact_instructions TEXT;
 
 ALTER TABLE base.event ADD COLUMN presentation_length INTERVAL NOT NULL DEFAULT '0:00:00';
+ALTER TABLE base.event ADD COLUMN sreview_url TEXT;
 
 SELECT log.activate_logging();
 
@@ -796,5 +797,8 @@ INSERT INTO im_type_localized (im_type, translated, name) VALUES ('signal', 'en'
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('facebook', 'en', 'Facebook');
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('telegram', 'en', '|Telegram');
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('skype', 'en', 'Skype');
+
+INSERT INTO ui_message (ui_message) VALUES ('event::sreview_url');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::sreview_url', 'en', 'Pre-recorded Video Upload URL');
 
 COMMIT;

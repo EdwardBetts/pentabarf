@@ -86,6 +86,15 @@ xml.div(:id=>'content-general') do
 
       xml << text_field_row( @event, :presentation_length, {:size=>8} )
 
+      if @event.event_state == 'accepted' && @event.sreview_url
+        xml.tr do
+          xml.td do xml.b( local('event::sreview_url')) end
+          xml.td do
+            xml.a("Upload", {:href=>@event.sreview_url})
+          end
+        end
+      end
+
       xml.tr do
         xml.td do xml.b( local('event::conference_room')) end
         xml.td do

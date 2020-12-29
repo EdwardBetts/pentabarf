@@ -282,6 +282,7 @@ INSERT INTO ui_message (ui_message) VALUES ('event::resources');
 INSERT INTO ui_message (ui_message) VALUES ('event::resources::introduction');
 INSERT INTO ui_message (ui_message) VALUES ('event::slides');
 INSERT INTO ui_message (ui_message) VALUES ('event::slug');
+INSERT INTO ui_message (ui_message) VALUES ('event::sreview_url');
 INSERT INTO ui_message (ui_message) VALUES ('event::start_time');
 INSERT INTO ui_message (ui_message) VALUES ('event::submission_notes');
 INSERT INTO ui_message (ui_message) VALUES ('event::subtitle');
