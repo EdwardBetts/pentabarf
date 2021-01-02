@@ -58,7 +58,7 @@ class EventController < ApplicationController
   end
 
   def save
-    event = write_row( Event, params[:event], {:except=>[:event_id,:conference_id],:init=>{:event_id=>nil,:conference_id=>@current_conference.conference_id},:always=>[:public]} )
+    event = write_row( Event, params[:event], {:except=>[:event_id,:conference_id],:init=>{:event_id=>nil,:conference_id=>@current_conference.conference_id},:always=>[:public,:prerecorded]} )
     custom_bools = Custom_fields.select({:table_name=>:event,:field_type=>:boolean}).map(&:field_name)
     write_row( Custom_event, params[:custom_event], {:preset=>{:event_id=>event.event_id},:always=>custom_bools})
     if params[:event_rating] then

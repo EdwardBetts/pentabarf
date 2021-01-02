@@ -86,7 +86,7 @@ xml.div(:id=>'content-general') do
 
       xml << text_field_row( @event, :presentation_length, {:size=>8} )
 
-      if @event.event_state == 'accepted' && @event.sreview_url
+      if @event.event_state == 'accepted' && @event.sreview_url && @event.prerecorded
         xml.tr do
           xml.td do xml.b( local('event::sreview_url')) end
           xml.td do

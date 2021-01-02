@@ -37,7 +37,8 @@ CREATE OR REPLACE VIEW view_event AS
          event_image.mime_type,
          mime_type.file_extension,
 	 event.licence,
-	 event.presentation_length
+	 event.presentation_length,
+	 event.prerecorded
     FROM event
          INNER JOIN event_state_localized USING (event_state)
          INNER JOIN conference USING (conference_id)

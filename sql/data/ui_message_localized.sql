@@ -585,6 +585,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::paper', 'de', 'Abgabe eines Papers für den Tagungsband');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::paper', 'en', 'Submission of paper for proceedings');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::paper', 'pt', 'Apresentação de papel para processo');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::prerecorded', 'en', 'Pre-recorded Video?');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::presentation_length', 'en', 'Presentation Length (without Q&A)');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::public', 'de', 'Öffentliche Veranstaltung');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::public', 'en', 'Public event');

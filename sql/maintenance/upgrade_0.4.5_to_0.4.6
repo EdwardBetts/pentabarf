@@ -59,6 +59,7 @@ ALTER TABLE base.person ADD COLUMN contact_instructions TEXT;
 
 ALTER TABLE base.event ADD COLUMN presentation_length INTERVAL NOT NULL DEFAULT '0:00:00';
 ALTER TABLE base.event ADD COLUMN sreview_url TEXT;
+ALTER TABLE base.event ADD COLUMN prerecorded BOOL NOT NULL DEFAULT TRUE;
 
 SELECT log.activate_logging();
 
@@ -773,7 +774,8 @@ CREATE OR REPLACE VIEW view_event AS
          event_image.mime_type,
          mime_type.file_extension,
 	 event.licence,
-	 event.presentation_length
+	 event.presentation_length,
+	 event.prerecorded
     FROM event
          INNER JOIN event_state_localized USING (event_state)
          INNER JOIN conference USING (conference_id)
@@ -800,5 +802,8 @@ INSERT INTO im_type_localized (im_type, translated, name) VALUES ('skype', 'en',
 
 INSERT INTO ui_message (ui_message) VALUES ('event::sreview_url');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::sreview_url', 'en', 'Pre-recorded Video Upload URL');
+
+INSERT INTO ui_message (ui_message) VALUES ('event::prerecorded');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::prerecorded', 'en', 'Pre-recorded Video?');
 
 COMMIT;
