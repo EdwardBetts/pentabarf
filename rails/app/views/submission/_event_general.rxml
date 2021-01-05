@@ -99,7 +99,7 @@ xml.div(:id=>'content-general') do
         xml.tr do
           xml.td do xml.b( local('event::sreview_review_url')) end
           xml.td do
-            xml.a("Upload", {:href=>@event.sreview_review_url})
+            xml.a("Review", {:href=>@event.sreview_review_url})
           end
         end
       end
