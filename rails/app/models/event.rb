@@ -14,7 +14,7 @@ class Event < Momomoto::Table
   end
 
   def self.log_hidden_columns
-    [:sreview_url]
+    [:sreview_upload_url,:sreview_review_url]
   end
 
   def self.log_change_url( change )

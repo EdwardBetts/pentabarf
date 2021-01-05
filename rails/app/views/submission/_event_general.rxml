@@ -86,11 +86,20 @@ xml.div(:id=>'content-general') do
 
       xml << text_field_row( @event, :presentation_length, {:size=>8} )
 
-      if @event.event_state == 'accepted' && @event.sreview_url && @event.prerecorded
+      if @event.event_state == 'accepted' && @event.sreview_upload_url && @event.prerecorded
         xml.tr do
-          xml.td do xml.b( local('event::sreview_url')) end
+          xml.td do xml.b( local('event::sreview_upload_url')) end
           xml.td do
-            xml.a("Upload", {:href=>@event.sreview_url})
+            xml.a("Upload", {:href=>@event.sreview_upload_url})
+          end
+        end
+      end
+
+      if @event.event_state == 'accepted' && @event.sreview_review_url
+        xml.tr do
+          xml.td do xml.b( local('event::sreview_review_url')) end
+          xml.td do
+            xml.a("Upload", {:href=>@event.sreview_review_url})
           end
         end
       end
