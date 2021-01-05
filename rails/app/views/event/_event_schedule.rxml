@@ -25,11 +25,8 @@ xml.div(:id=>'content-schedule') do
 
       xml << check_box_row( @event, :prerecorded )
 
-      if @event.sreview_upload_url && POPE.permission?('admin::login')
+      if POPE.permission?('admin::login')
         xml << text_field_row( @event, :sreview_upload_url, {:size=>70} )
-      end
-
-      if @event.sreview_review_url && POPE.permission?('admin::login')
         xml << text_field_row( @event, :sreview_review_url, {:size=>70} )
       end
 
