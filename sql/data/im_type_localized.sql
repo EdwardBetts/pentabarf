@@ -10,6 +10,7 @@ INSERT INTO im_type_localized (im_type, translated, name) VALUES ('icq', 'de', '
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('icq', 'en', 'ICQ');
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('jabber', 'de', 'Jabber');
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('jabber', 'en', 'Jabber');
+INSERT INTO im_type_localized (im_type, translated, name) VALUES ('matrix', 'en', 'Matrix');
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('msn', 'de', 'MSN');
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('msn', 'en', 'MSN');
 INSERT INTO im_type_localized (im_type, translated, name) VALUES ('yahoo', 'de', 'Yahoo');
