@@ -4,6 +4,10 @@ class Conference_person < Momomoto::Table
     columns.keys - [:conference_person_id]
   end
 
+  def self.log_hidden_columns
+    [:voucher_number]
+  end
+
   def self.log_change_url( change )
     {:controller=>'person',:action=>:edit,:person_id=>change.person_id}
   end
