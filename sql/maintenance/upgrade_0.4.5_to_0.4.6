@@ -61,6 +61,7 @@ ALTER TABLE base.event ADD COLUMN presentation_length INTERVAL NOT NULL DEFAULT 
 ALTER TABLE base.event ADD COLUMN sreview_upload_url TEXT;
 ALTER TABLE base.event ADD COLUMN prerecorded BOOL NOT NULL DEFAULT TRUE;
 ALTER TABLE base.event ADD COLUMN sreview_review_url TEXT;
+ALTER TABLE base.conference_person ADD COLUMN voucher_number TEXT;
 
 SELECT log.activate_logging();
 
@@ -808,5 +809,8 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::
 
 INSERT INTO ui_message (ui_message) VALUES ('event::prerecorded');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::prerecorded', 'en', 'Pre-recorded Video?');
+
+INSERT INTO ui_message (ui_message) VALUES ('conference_person::voucher_number');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_person::voucher_number', 'en', 'Voucher Number');
 
 COMMIT;

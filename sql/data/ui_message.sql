@@ -121,6 +121,7 @@ INSERT INTO ui_message (ui_message) VALUES ('conference_person::email');
 INSERT INTO ui_message (ui_message) VALUES ('conference_person::person_id');
 INSERT INTO ui_message (ui_message) VALUES ('conference_person::reconfirmed');
 INSERT INTO ui_message (ui_message) VALUES ('conference_person::remark');
+INSERT INTO ui_message (ui_message) VALUES ('conference_person::voucher_number');
 INSERT INTO ui_message (ui_message) VALUES ('conference_person_link');
 INSERT INTO ui_message (ui_message) VALUES ('conference_person_link::conference_person_id');
 INSERT INTO ui_message (ui_message) VALUES ('conference_person_link::conference_person_link_id');

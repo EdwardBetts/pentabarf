@@ -286,6 +286,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_person::remark', 'de', 'Notizen');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_person::remark', 'en', 'Notes');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_person::remark', 'pt', 'Notas');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_person::voucher_number', 'en', 'Voucher Number');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_person_link', 'de', 'Link');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_person_link', 'en', 'Link');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_person_link', 'pt', 'Link');

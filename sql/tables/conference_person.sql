@@ -9,6 +9,7 @@ CREATE TABLE base.conference_person (
   email TEXT,
   arrived BOOL NOT NULL DEFAULT FALSE,
   reconfirmed BOOL NOT NULL DEFAULT FALSE,
+  voucher_number TEXT,
   CONSTRAINT conference_person_email_check CHECK (email ~ E'^[\\w=_.+-]+@([\\w.+_-]+\.)+\\w{2,}$')
 );
 
