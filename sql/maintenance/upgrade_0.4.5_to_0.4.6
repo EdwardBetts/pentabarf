@@ -62,6 +62,8 @@ ALTER TABLE base.event ADD COLUMN sreview_upload_url TEXT;
 ALTER TABLE base.event ADD COLUMN prerecorded BOOL NOT NULL DEFAULT TRUE;
 ALTER TABLE base.event ADD COLUMN sreview_review_url TEXT;
 ALTER TABLE base.conference_person ADD COLUMN voucher_number TEXT;
+ALTER TABLE conference_person ADD CONSTRAINT conference_person_voucher_number_key UNIQUE(voucher_number);
+
 
 SELECT log.activate_logging();
 

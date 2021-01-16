@@ -17,7 +17,8 @@ CREATE TABLE conference_person (
   FOREIGN KEY (conference_id) REFERENCES conference (conference_id) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (person_id) REFERENCES person (person_id) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY (conference_person_id),
-  UNIQUE( conference_id, person_id)
+  UNIQUE( conference_id, person_id),
+  CONSTRAINT conference_person_voucher_number_key UNIQUE(voucher_number)
 ) INHERITS( base.conference_person );
 
 CREATE TABLE log.conference_person (
