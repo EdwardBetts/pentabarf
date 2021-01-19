@@ -54,7 +54,7 @@
 \i views/view_event_state_progress_statistic.sql
 \i views/view_conference_language.sql
 \i views/view_event_duration.sql
-\i views/view_matrix_bot_export_2021.sql
+\i views/view_matrix.sql
 \i views/release/view_person.sql
 \i views/release/view_schedule_day.sql
 \i views/release/view_schedule_room.sql

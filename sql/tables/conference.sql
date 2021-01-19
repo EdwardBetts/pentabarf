@@ -29,7 +29,8 @@ CREATE TABLE base.conference (
   f_submission_writable BOOL NOT NULL DEFAULT FALSE,
   f_visitor_enabled BOOL NOT NULL DEFAULT FALSE,
   f_reconfirmation_enabled BOOL NOT NULL DEFAULT FALSE,
-  f_travel_enabled BOOL NOT NULL DEFAULT TRUE
+  f_travel_enabled BOOL NOT NULL DEFAULT TRUE,
+  f_matrix_bot_enabled BOOL NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE conference (

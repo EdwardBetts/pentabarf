@@ -67,6 +67,7 @@ INSERT INTO ui_message (ui_message) VALUES ('conference::duration');
 INSERT INTO ui_message (ui_message) VALUES ('conference::email');
 INSERT INTO ui_message (ui_message) VALUES ('conference::export_base_url');
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_feedback_enabled');
+INSERT INTO ui_message (ui_message) VALUES ('conference::f_matrix_bot_enabled');
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_reconfirmation_enabled');
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_submission_enabled');
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_submission_new_events');

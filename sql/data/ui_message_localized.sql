@@ -150,6 +150,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_feedback_enabled', 'de', 'Feedback ist möglich');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_feedback_enabled', 'en', 'Enable Feedback System');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_feedback_enabled', 'pt', 'Habilitar Sistema de Feedback');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_matrix_bot_enabled', 'en', 'Enable Matrix Bot');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_reconfirmation_enabled', 'de', 'Erlaube "reconfirmation"');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_reconfirmation_enabled', 'en', 'Enable Reconfirmation');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_reconfirmation_enabled', 'pt', 'Habilitar Reconfirmação');

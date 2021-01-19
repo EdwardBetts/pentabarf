@@ -28,6 +28,7 @@ xml.div(:id=>'content-export') do
       xml << check_box_row( @conference, :f_reconfirmation_enabled )
       xml << check_box_row( @conference, :f_travel_enabled )
       xml << check_box_row( @conference, :f_feedback_enabled )
+      xml << check_box_row( @conference, :f_matrix_bot_enabled )
     end
   end
 
