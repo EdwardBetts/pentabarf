@@ -851,6 +851,6 @@ CREATE OR REPLACE VIEW view_matrix_event_image AS
         JOIN view_matrix_event_person USING (event_id)
         GROUP BY event_id, mime_type, image;
 
-
+ALTER TABLE person_im add CONSTRAINT matrix_format_check CHECK (im_type != 'matrix' OR im_address ~ E'^@.+:.+$') NOT VALID;
 
 COMMIT;

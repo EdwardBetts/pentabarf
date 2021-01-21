@@ -11,6 +11,7 @@ CREATE TABLE person_im (
   FOREIGN KEY (person_id) REFERENCES person (person_id) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (im_type) REFERENCES im_type (im_type) ON UPDATE CASCADE ON DELETE RESTRICT,
   PRIMARY KEY (person_im_id)
+  CONSTRAINT matrix_format_check CHECK (im_type != 'matrix' OR im_address ~ E'^@.+:.+$')
 ) INHERITS( base.person_im );
 
 CREATE TABLE log.person_im (
