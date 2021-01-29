@@ -62,6 +62,8 @@ ALTER TABLE base.event ADD COLUMN presentation_length INTERVAL NOT NULL DEFAULT 
 ALTER TABLE base.event ADD COLUMN sreview_upload_url TEXT;
 ALTER TABLE base.event ADD COLUMN prerecorded BOOL NOT NULL DEFAULT TRUE;
 ALTER TABLE base.event ADD COLUMN sreview_review_url TEXT;
+ALTER TABLE base.event ADD COLUMN final_video_url TEXT;
+
 ALTER TABLE base.conference_person ADD COLUMN voucher_number TEXT;
 ALTER TABLE conference_person ADD CONSTRAINT conference_person_voucher_number_key UNIQUE(voucher_number);
 
@@ -818,6 +820,10 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_matrix_bot_enabled');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_matrix_bot_enabled', 'en', 'Enable Matrix Bot');
+
+INSERT INTO ui_message (ui_message) VALUES ('event::final_video_url');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::final_video_url', 'en', 'Final Video URL');
+
 
 CREATE OR REPLACE VIEW view_matrix_event_person AS
             SELECT ep.event_id, ep.person_id, ep.event_role,

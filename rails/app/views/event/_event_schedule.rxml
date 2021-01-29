@@ -28,6 +28,7 @@ xml.div(:id=>'content-schedule') do
       if POPE.permission?('admin::login')
         xml << text_field_row( @event, :sreview_upload_url, {:size=>70} )
         xml << text_field_row( @event, :sreview_review_url, {:size=>70} )
+        xml << text_field_row( @event, :final_video_url,    {:size=>70} )
       end
 
       xml << select_row( @event, :conference_room_id, @conference.rooms.map{|r| [r.conference_room_id,r.conference_room]},{:with_empty=>true})

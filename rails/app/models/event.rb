@@ -1,5 +1,5 @@
 class Event < Momomoto::Table
-  SubmissionFields = [:title,:subtitle,:paper,:slides,:language,:licence,:conference_track_id,:event_type,:abstract,:description,:resources,:duration,:submission_notes,:presentation_length]
+  SubmissionFields = [:title,:subtitle,:paper,:slides,:language,:licence,:conference_track_id,:event_type,:abstract,:description,:resources,:duration,:submission_notes]
 
   module Methods
 
@@ -14,7 +14,7 @@ class Event < Momomoto::Table
   end
 
   def self.log_hidden_columns
-    [:sreview_upload_url,:sreview_review_url]
+    [:sreview_upload_url,:sreview_review_url,:final_video_url]
   end
 
   def self.log_change_url( change )

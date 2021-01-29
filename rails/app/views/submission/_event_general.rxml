@@ -95,11 +95,20 @@ xml.div(:id=>'content-general') do
         end
       end
 
-      if @event.event_state == 'accepted' && @event.sreview_review_url
+      if @event.event_state == 'accepted' && @event.sreview_review_url && @event.prerecorded
         xml.tr do
           xml.td do xml.b( local('event::sreview_review_url')) end
           xml.td do
             xml.a("Review", {:href=>@event.sreview_review_url})
+          end
+        end
+      end
+
+      if @event.event_state == 'accepted' && @event.final_video_url && @event.prerecorded
+        xml.tr do
+          xml.td do xml.b( local('event::final_video_url')) end
+          xml.td do
+            xml.a("Final Version", {:href=>@event.final_video_url})
           end
         end
       end

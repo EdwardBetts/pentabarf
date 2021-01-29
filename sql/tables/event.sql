@@ -28,7 +28,8 @@ CREATE TABLE base.event (
   presentation_length INTERVAL NOT NULL DEFAULT '0:00:00',
   sreview_upload_url TEXT,
   prerecorded BOOL NOT NULL DEFAULT TRUE,
-  sreview_review_url TEXT
+  sreview_review_url TEXT,
+  final_video_url TEXT
 );
 
 CREATE TABLE event (

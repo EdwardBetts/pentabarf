@@ -576,6 +576,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_type', 'de', 'Veranstaltungstyp');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_type', 'en', 'Event type');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::event_type', 'pt', 'Tipo do Evento');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::final_video_url', 'en', 'Final Video URL');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::language', 'de', 'Sprache der Veranstaltung');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::language', 'en', 'Language used for presentation');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::language', 'pt', 'Linguagem utilizados para apresentação');

@@ -272,6 +272,7 @@ INSERT INTO ui_message (ui_message) VALUES ('event::event_state');
 INSERT INTO ui_message (ui_message) VALUES ('event::event_state_and_progress');
 INSERT INTO ui_message (ui_message) VALUES ('event::event_state_progress');
 INSERT INTO ui_message (ui_message) VALUES ('event::event_type');
+INSERT INTO ui_message (ui_message) VALUES ('event::final_video_url');
 INSERT INTO ui_message (ui_message) VALUES ('event::language');
 INSERT INTO ui_message (ui_message) VALUES ('event::licence');
 INSERT INTO ui_message (ui_message) VALUES ('event::own::tab::coordinator');
