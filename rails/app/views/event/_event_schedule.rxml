@@ -25,7 +25,7 @@ xml.div(:id=>'content-schedule') do
 
       xml << check_box_row( @event, :prerecorded )
 
-      if POPE.permission?('admin::login')
+      if (POPE.conference_permission?( 'account_conference_role::create', @current_conference.conference_id))
         xml << text_field_row( @event, :sreview_upload_url, {:size=>70} )
         xml << text_field_row( @event, :sreview_review_url, {:size=>70} )
         xml << text_field_row( @event, :final_video_url,    {:size=>70} )

@@ -13,7 +13,8 @@ class SubmissionController < ApplicationController
   def event
     if params[:id] && params[:id] != 'new'
       own = Own_conference_events.call({:person_id=>POPE.user.person_id,:conference_id=>@conference.conference_id},{:own_conference_events=>params[:id]})
-      raise "You are not allowed to edit this event." if own.length != 1
+      raise "You are not allowed to edit this event." if (own.length != 1 && !POPE.conference_permission?( 'account_conference_role::create', @current_conference.conference_id))
+
       @event = Event.select_single({:event_id=>params[:id]})
     else
       raise "Submission of events has been disabled for this conference." if !@current_conference.f_submission_new_events
