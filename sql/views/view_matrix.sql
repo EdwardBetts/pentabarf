@@ -2,7 +2,15 @@ CREATE OR REPLACE VIEW view_matrix_event_person AS
             SELECT ep.event_id, ep.person_id, ep.event_role, 
 		   vp.name, vp.email, ac.login_name, pim.im_address as matrix_id, 
 		   e.slug, r.conference_room, 
-		   cd.conference_day + e.start_time + c.day_change::interval AS start_datetime,
+		   cd.conference_day + e.start_time + c.day_change::interval +
+		      c.timeshift_offset * c.f_timeshift_test_enabled::integer * 
+		        CASE 
+			  WHEN 
+			    e.conference_room_id = c.test_conference_room_id 
+			    THEN 1 
+			    ELSE 0 
+			END 
+		     AS start_datetime,
 		   e.duration, e.presentation_length, e.prerecorded
             FROM event_person ep
             JOIN view_person vp ON (vp.person_id = ep.person_id)

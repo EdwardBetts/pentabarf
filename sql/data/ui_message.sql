@@ -72,6 +72,7 @@ INSERT INTO ui_message (ui_message) VALUES ('conference::f_reconfirmation_enable
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_submission_enabled');
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_submission_new_events');
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_submission_writable');
+INSERT INTO ui_message (ui_message) VALUES ('conference::f_timeshift_test_enabled');
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_travel_enabled');
 INSERT INTO ui_message (ui_message) VALUES ('conference::f_visitor_enabled');
 INSERT INTO ui_message (ui_message) VALUES ('conference::feedback_base_url');
@@ -92,6 +93,8 @@ INSERT INTO ui_message (ui_message) VALUES ('conference::tab::room_roles');
 INSERT INTO ui_message (ui_message) VALUES ('conference::tab::rooms');
 INSERT INTO ui_message (ui_message) VALUES ('conference::tab::teams');
 INSERT INTO ui_message (ui_message) VALUES ('conference::tab::tracks');
+INSERT INTO ui_message (ui_message) VALUES ('conference::test_conference_room_id');
+INSERT INTO ui_message (ui_message) VALUES ('conference::timeshift_offset');
 INSERT INTO ui_message (ui_message) VALUES ('conference::timeslot_duration');
 INSERT INTO ui_message (ui_message) VALUES ('conference::timezone');
 INSERT INTO ui_message (ui_message) VALUES ('conference::title');

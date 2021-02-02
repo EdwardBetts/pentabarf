@@ -163,6 +163,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_submission_writable', 'de', 'Einreichungen sind beschreibar');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_submission_writable', 'en', 'Submission writable');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_submission_writable', 'pt', 'Submissão editável');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_timeshift_test_enabled', 'en', 'Enable Conference Timeshift Test');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_travel_enabled', 'en', 'Enable Travel Information');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_visitor_enabled', 'en', 'Enable Visitor System');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::f_visitor_enabled', 'pt', 'Habilitar Sistema de Visitantes');
@@ -213,6 +214,8 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::tab::tracks', 'de', 'Tracks');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::tab::tracks', 'en', 'Tracks');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::tab::tracks', 'pt', 'Trilhas');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::test_conference_room_id','en','Timeshift Test Room');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeshift_offset','en','Timeshift Test Offset');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeslot_duration', 'de', 'Dauer einer Zeiteinheit');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeslot_duration', 'en', 'Timeslot duration');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeslot_duration', 'pt', 'Timeslot duração');

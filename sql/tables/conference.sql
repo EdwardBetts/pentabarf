@@ -30,7 +30,10 @@ CREATE TABLE base.conference (
   f_visitor_enabled BOOL NOT NULL DEFAULT FALSE,
   f_reconfirmation_enabled BOOL NOT NULL DEFAULT FALSE,
   f_travel_enabled BOOL NOT NULL DEFAULT TRUE,
-  f_matrix_bot_enabled BOOL NOT NULL DEFAULT FALSE
+  f_matrix_bot_enabled BOOL NOT NULL DEFAULT FALSE,
+  f_timeshift_test_enabled BOOL NOT NULL DEFAULT FALSE
+  timeshift_offset INTERVAL NOT NULL DEFAULT '0:00:00',
+  test_conference_room_id INTEGER
 );
 
 CREATE TABLE conference (
@@ -38,6 +41,7 @@ CREATE TABLE conference (
   FOREIGN KEY (country) REFERENCES country (country) ON UPDATE CASCADE ON DELETE SET NULL,
   FOREIGN KEY (timezone) REFERENCES timezone (timezone) ON UPDATE CASCADE ON DELETE SET NULL,
   FOREIGN KEY (currency) REFERENCES currency (currency) ON UPDATE CASCADE ON DELETE SET NULL,
+  FOREIGN KEY (conference_room_id) REFERENCES conference_room (conference_room_id) ON UPDATE CASCADE ON DELETE SET NULL,
   PRIMARY KEY (conference_id)
 ) INHERITS( base.conference );
 
