@@ -94,7 +94,7 @@ INSERT INTO ui_message (ui_message) VALUES ('conference::tab::rooms');
 INSERT INTO ui_message (ui_message) VALUES ('conference::tab::teams');
 INSERT INTO ui_message (ui_message) VALUES ('conference::tab::tracks');
 INSERT INTO ui_message (ui_message) VALUES ('conference::test_conference_room_id');
-INSERT INTO ui_message (ui_message) VALUES ('conference::timeshift_offset');
+INSERT INTO ui_message (ui_message) VALUES ('conference::timeshift_offset_minutes');
 INSERT INTO ui_message (ui_message) VALUES ('conference::timeslot_duration');
 INSERT INTO ui_message (ui_message) VALUES ('conference::timezone');
 INSERT INTO ui_message (ui_message) VALUES ('conference::title');

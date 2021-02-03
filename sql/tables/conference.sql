@@ -33,7 +33,8 @@ CREATE TABLE base.conference (
   f_matrix_bot_enabled BOOL NOT NULL DEFAULT FALSE,
   f_timeshift_test_enabled BOOL NOT NULL DEFAULT FALSE
   timeshift_offset INTERVAL NOT NULL DEFAULT '0:00:00',
-  test_conference_room_id INTEGER
+  test_conference_room_id INTEGER,
+  timeshift_offset_minutes INTEGER
 );
 
 CREATE TABLE conference (

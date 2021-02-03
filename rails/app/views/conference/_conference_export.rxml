@@ -30,7 +30,7 @@ xml.div(:id=>'content-export') do
       xml << check_box_row( @conference, :f_feedback_enabled )
       xml << check_box_row( @conference, :f_matrix_bot_enabled )
       xml << check_box_row( @conference, :f_timeshift_test_enabled )
-      xml << text_field_row( @conference, :timeshift_offset, {:size=>12})
+      xml << text_field_row( @conference, :timeshift_offset_minutes, {:size=>10} )
       xml << select_row( @conference, :test_conference_room_id, @conference.rooms.map{|r| [r.conference_room_id,r.conference_room]},{:with_empty=>true})
     end
   end

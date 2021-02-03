@@ -215,7 +215,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::tab::tracks', 'en', 'Tracks');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::tab::tracks', 'pt', 'Trilhas');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::test_conference_room_id','en','Timeshift Test Room');
-INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeshift_offset','en','Timeshift Test Offset');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeshift_offset_minutes','en','Timeshift Test Offset (minutes)');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeslot_duration', 'de', 'Dauer einer Zeiteinheit');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeslot_duration', 'en', 'Timeslot duration');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeslot_duration', 'pt', 'Timeslot duração');
