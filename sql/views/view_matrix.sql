@@ -1,5 +1,11 @@
 CREATE OR REPLACE VIEW view_matrix_event_person AS
             SELECT ep.event_id, ep.person_id, ep.event_role, 
+		   CASE
+		     WHEN
+		       ep.remark = 'volunteer'
+		       THEN 'volunteer'
+		       ELSE ''
+                     END as remark,
 		   vp.name, vp.email, ac.login_name, pim.im_address as matrix_id, 
 		   e.slug, r.conference_room, 
 		   cd.conference_day + e.start_time + c.day_change::interval +
