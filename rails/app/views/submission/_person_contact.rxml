@@ -16,6 +16,10 @@ xml.div(:id=>'content-contact') do
   xml.fieldset do
     xml.legend local('person_im')
 
+    xml.p do
+      xml.text "This is where you set your matrix account id.  If you are given a role in the event, we use this to invite you to the correct rooms on chat.fosdem.org."
+    end
+
     xml.table(:id=>'person_im_table',:style=>'display:none') do
       xml.thead do
         xml.tr do
