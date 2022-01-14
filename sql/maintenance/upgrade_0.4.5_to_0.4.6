@@ -888,4 +888,20 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::test_conference_room_id','en','Timeshift Test Room');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::timeshift_offset_minutes','en','Timeshift Test Offset (minutes)');
 
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('canceled', 'coordinator', 3);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('confirmed', 'coordinator', 5);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('declined', 'coordinator', 4);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('enquired', 'coordinator', 2);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('idea', 'coordinator', 1);
+INSERT INTO event_role_state (event_role_state, event_role, rank) VALUES ('offer', 'coordinator', 7);
+
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('coordinator', 'canceled', 'en', 'canceled');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('coordinator', 'confirmed', 'en', 'confirmed');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('coordinator', 'declined', 'en', 'declined');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('coordinator', 'enquired', 'en', 'enquired');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('coordinator', 'idea', 'en', 'idea');
+INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('coordinator', 'offer', 'en', 'offer');
+
+
 COMMIT;
+
