@@ -27,9 +27,11 @@ CREATE TABLE base.event (
   licence TEXT,
   presentation_length INTERVAL NOT NULL DEFAULT '0:00:00',
   sreview_upload_url TEXT,
-  prerecorded BOOL NOT NULL DEFAULT TRUE,
+  prerecorded BOOL NOT NULL DEFAULT FALSE,
   sreview_review_url TEXT,
-  final_video_url TEXT
+  final_video_url TEXT,
+  physical BOOL NOT NULL DEFAULT TRUE,
+  virtual BOOL NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE event (

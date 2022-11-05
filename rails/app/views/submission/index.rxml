@@ -16,14 +16,17 @@ xml.div do
 
   if @conference
     xml.p do
-      xml.text "In 2022, FOSDEM will be held entirely online once again using the same platform as before. All presentations will need to be pre-recorded no later than 2 weeks before the event. Talks will be accompanied by live text-based chat and followed by live moderated video Q&A and discussion."
+      xml.text "For 2023, FOSDEM is once again planning an in-person event.  It will also be possible to participate remotely.  All talks presented live on the campus in Brussels will also be streamed.  Additionally, some talks may be pre-recorded and broadcast online using the same matrix platform as in 2021 and 2022.  (These will not be allocated to any room on the campus.)  When submitting a proposal you must indicate whether you are offering to speak only in-person or only to produce a pre-recording or whether you would do either of the two.  Pre-recorded presentations must be ready no later than 2 weeks before the event.  All talks will be accompanied by live text-based chat and moderated Q&A and discussion."
     end
     xml.p do
-      xml.text "Before proposing a session, please make sure you will have the facilities (camera, microphone, network) and time to prepare, upload and review a recording during the first three weeks of January under the guidance of one of our volunteers if your proposal is accepted."
+      xml.text "Before proposing a pre-recorded talk, please make sure you will have the facilities (camera, microphone, network) and time to prepare, upload and review a recording during the first three weeks of January under the guidance of one of our volunteers if your proposal is accepted."
       xml.text "You will also need to be available during the week before FOSDEM to familiarise yourself with and test the system to be used during the event."
-      xml.text "Please also fill out the Availability tab (under Person) to indicate the hours during which your presentation can be scheduled taking into account your local time zone."
       xml.text "Make sure you can be in a place with a computer and solid network connection capable of supporting video streams at those times."
       xml.text "You will need to check-in to test your connection about an hour before the scheduled time of your presentation and provide contact details we can use to try to attract your attention if you if you don't appear at the expected time."
+    end
+
+    xml.p do
+      xml.text "If you will not be present on the campus in Brussels for the whole event or wish to participate remotely, please also fill out the Availability tab (under Person) to indicate the hours during which your presentation can be scheduled taking into account your local time zone."
     end
 
     xml.p do

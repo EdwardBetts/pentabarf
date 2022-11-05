@@ -591,6 +591,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::paper', 'de', 'Abgabe eines Papers für den Tagungsband');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::paper', 'en', 'Submission of paper for proceedings');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::paper', 'pt', 'Apresentação de papel para processo');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::physical', 'en', 'On-campus event?');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::prerecorded', 'en', 'Pre-recorded Video?');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::presentation_length', 'en', 'Presentation Length (without Q&A)');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::public', 'de', 'Öffentliche Veranstaltung');
@@ -660,6 +661,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::type', 'de', 'Veranstaltungsart');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::type', 'en', 'Event type');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::type', 'pt', 'Tipo do Evento');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::virtual', 'en', 'Online event?');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event_attachment::attachment_type', 'de', 'Typ des Anhangs');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event_attachment::attachment_type', 'en', 'attachment type');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event_attachment::event_id', 'de', 'Event');
@@ -1468,3 +1470,6 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('user::t
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('user::thanks_for_registering', 'en', 'Thank you for registering an account. The activation link has just been sent to your email address. To activate your account click on the activation link you just got by mail.');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('user::use_account_for_these_conferences', 'de', 'Du kannst Deinen Benutzer verwenden um Einreichungen zu folgenden Konfrenzen zu tätigen:');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('user::use_account_for_these_conferences', 'en', 'You can use your account to submit papers to one of the following conferences:');
+
+
+

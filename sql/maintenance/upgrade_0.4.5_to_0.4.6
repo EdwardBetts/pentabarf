@@ -73,6 +73,9 @@ ALTER TABLE base.event ADD COLUMN final_video_url TEXT;
 ALTER TABLE base.conference_person ADD COLUMN voucher_number TEXT;
 ALTER TABLE conference_person ADD CONSTRAINT conference_person_voucher_number_key UNIQUE(voucher_number);
 
+ALTER TABLE base.event ADD COLUMN physical BOOL NOT NULL DEFAULT TRUE;
+ALTER TABLE base.event ADD COLUMN virtual BOOL NOT NULL DEFAULT FALSE;
+
 
 SELECT log.activate_logging();
 
@@ -788,7 +791,9 @@ CREATE OR REPLACE VIEW view_event AS
          mime_type.file_extension,
 	 event.licence,
 	 event.presentation_length,
-	 event.prerecorded
+	 event.prerecorded,
+	 event.physical,
+	 event.virtual
     FROM event
          INNER JOIN event_state_localized USING (event_state)
          INNER JOIN conference USING (conference_id)
@@ -829,6 +834,12 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 
 INSERT INTO ui_message (ui_message) VALUES ('event::final_video_url');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::final_video_url', 'en', 'Final Video URL');
+
+INSERT INTO ui_message (ui_message) VALUES ('event::physical');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::physical', 'en', 'On-campus event?');
+
+INSERT INTO ui_message (ui_message) VALUES ('event::virtual');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::virtual', 'en', 'Online event?');
 
 CREATE OR REPLACE VIEW view_matrix_event_person AS
             SELECT ep.event_id, ep.person_id, ep.event_role, 
@@ -902,6 +913,7 @@ INSERT INTO event_role_state_localized (event_role, event_role_state, translated
 INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('coordinator', 'idea', 'en', 'idea');
 INSERT INTO event_role_state_localized (event_role, event_role_state, translated, name) VALUES ('coordinator', 'offer', 'en', 'offer');
 
+ALTER TABLE base.event ALTER COLUMN prerecorded SET DEFAULT FALSE;
 
 COMMIT;
 

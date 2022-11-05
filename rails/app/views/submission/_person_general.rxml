@@ -6,6 +6,7 @@ xml.div(:id=>'content-general') do
     xml.p do
       xml.text "Please click through the tabs above or use 'Show all' and complete the relevant information. Then press the 'Save' button that will appear on the bottom right when anything is changed."
       xml.text "The button saves changes made across all the tabs together - you only need to use it once after editing all the tabs but if you are entering a lot of text you might prefer to save multiple times as you go along. As soon as the data is saved into the database, reviewers can see it. You can update it at any point."
+      xml.text "(Note that some browsers auto-fill the password box on the Account tab even when you haven't viewed that tab and this may lead to confusing behaviour.)"
     end
     xml.p do
       xml.text "Please also upload a photograph of yourself.  The image gets converted to 220 pixels (horizontal) by 180 pixels (vertical)."

@@ -1,5 +1,6 @@
 class Event < Momomoto::Table
-  SubmissionFields = [:title,:subtitle,:paper,:slides,:language,:licence,:conference_track_id,:event_type,:abstract,:description,:resources,:duration,:submission_notes]
+  SubmissionFields = [:title,:subtitle,:paper,:slides,:language,:licence,:conference_track_id,:event_type,:abstract,:description,:resources,:duration,:submission_notes,:physical,:virtual]
+  SubmissionAlwaysFields = [:physical,:virtual]
 
   module Methods
 

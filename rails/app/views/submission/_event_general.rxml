@@ -31,6 +31,14 @@ xml.div(:id=>'content-general') do
       xml << file_row( :event_image, :image )
       xml << check_box_row( :event_image, :remove )
     end
+
+    xml.p do
+      xml.text "The first checkbox below confirms that you expect to be able to travel to Brussels to give your talk in person on campus.  The second checkbox indicates that you would like your proposal to be considered as a pre-recorded online-only talk if it is not selected for the in-person schedule or you unchecked the first checkbox.  Note that some tracks might decide not to include any pre-recorded online-only talks."
+    end
+    xml.table do
+      xml << check_box_row( @event, :physical )
+      xml << check_box_row( @event, :virtual )
+    end
   end
 
   custom = Custom_event.select_or_new({:event_id=>@event.event_id.to_i})
@@ -53,7 +61,7 @@ xml.div(:id=>'content-general') do
     xml.legend local('event::tab::schedule')
 
     xml.p do
-      xml.text "The Duration is the proposed length of your session in the live stream combining both pre-recorded talk and a short amount of live Q&A.  The presentation length is the length of the pre-recorded talk, which will be updated to the exact length when the video is ready.  Extended Q&A will be offered for those who wish to take part outside the live stream as interaction forms an important part of FOSDEM.  Please refer to the Call for Papers for the particular track to check for any additional guidance."
+      xml.text "The Duration is the proposed total length of your session in the schedule combining both talk and Q&A.  For online presentations, the presentation length is the length of the pre-recorded talk, which will be updated automatically to the exact length when the video is ready.  Please refer to the Call for Papers for the particular track to check for any additional guidance."
     end
 
     xml.table do

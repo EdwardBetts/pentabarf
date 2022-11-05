@@ -11,7 +11,7 @@ xml.div(:id=>'content-contact') do
   end
 
   xml << text_area_fieldset( @person, :contact_instructions, {:rows=>5,:cols=>60, 
-        :hint=>"Apart from your email address, other contact details are optional.  However, if your presentation is selected, please use this box to describe the method we should use to try to remind you if you do not appear online at the time we are expecting shortly before your presentation."})
+        :hint=>"Apart from your email address, other contact details are optional.  However, if your presentation is selected for an online-only session, please use this box to describe the method we should use to try to remind you if you do not appear online at the time we are expecting shortly before your presentation."})
 
   xml.fieldset do
     xml.legend local('person_im')

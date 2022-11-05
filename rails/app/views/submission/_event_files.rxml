@@ -3,6 +3,10 @@ xml.div(:id=>'content-files') do
   xml.fieldset do
     xml.legend( local(:attachments))
 
+    xml.p do
+      xml.text "Please don't upload the pre-recording of your talk here.  Instead, look for the link that appears in the Schedule section of the General tab after it has been accepted and scheduled."
+    end
+
     xml.table do
       xml.thead do
         xml.tr do
@@ -12,6 +16,8 @@ xml.div(:id=>'content-files') do
           end
         end
       end
+
+
       xml.tbody do
         @attachments.each do | attachment |
           row_id = attachment.event_attachment_id

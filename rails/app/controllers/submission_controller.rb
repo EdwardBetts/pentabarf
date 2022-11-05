@@ -42,7 +42,7 @@ class SubmissionController < ApplicationController
       POPE.refresh
     end
     params[:event][:event_id] = params[:id]
-    event = write_row( Event, params[:event], {:except=>[:event_id],:only=>Event::SubmissionFields} )
+    event = write_row( Event, params[:event], {:except=>[:event_id],:only=>Event::SubmissionFields,:always=>Event::SubmissionAlwaysFields} )
     custom_bools = Custom_fields.select({:table_name=>:event,:field_type=>:boolean,:submission_visible=>true,:submission_settable=>true}).map(&:field_name)
     custom_allowed = Custom_fields.select({:table_name=>:event,:submission_visible=>true,:submission_settable=>true}).map(&:field_name)
     write_row( Custom_event, params[:custom_event], {:preset=>{:event_id=>event.event_id},:always=>custom_bools,:only=>custom_allowed})
