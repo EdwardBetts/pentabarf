@@ -71,7 +71,7 @@ xml.div(:id=>'content-tracks') do
 
     xml.script(:type=>'text/javascript') do
       @conference.track_accounts.each do | a |
-        xml << js_function( 'table_add_row', 'conference_track_account', a.current_transaction_id, a.conference_track_account_id, a.conference_track_id, a.account_id  )
+        xml << js_function( 'add_track_manager', a.current_transaction_id, a.conference_track_account_id, a.conference_track_id, a.account_id  )
       end
     end
 
