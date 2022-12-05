@@ -45,7 +45,7 @@ class PersonController < ApplicationController
     if params[:account]
       params[:account][:account_id] = Account.select_single(:person_id=>person.person_id).account_id rescue nil
       account = write_row( Account, params[:account], {:except=>[:account_id,:salt,:edit_token,:password,:password2],:preset=>{:person_id=>person.person_id},:ignore_empty=>:login_name} ) do | row |
-        if params[:account][:password].to_s != "" && ( row.account_id == POPE.user.account_id || POPE.permission?( 'account::modify' ) )
+        if params[:account][:password].to_s != "" && params[:account][:password2].to_s != "" && ( row.account_id == POPE.user.account_id || POPE.permission?( 'account::modify' ) )
           raise "Passwords do not match" if params[:account][:password] != params[:account][:password2]
           row.password = params[:account][:password]
         end

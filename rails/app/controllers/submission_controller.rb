@@ -68,7 +68,7 @@ class SubmissionController < ApplicationController
     params[:account] ||= {}
     params[:account][:account_id] = Account.select_single(:person_id=>person.person_id).account_id rescue nil
     account = write_row( Account, params[:account], {:only=>[:current_language],:preset=>{:person_id=>person.person_id}} ) do | row |
-      if params[:account][:password].to_s != ""
+      if params[:account][:password].to_s != "" && params[:account][:password2].to_s != ""
         raise "Passwords do not match" if params[:account][:password] != params[:account][:password2]
         row.password = params[:account][:password]
       end
