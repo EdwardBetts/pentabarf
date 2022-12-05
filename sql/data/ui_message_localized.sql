@@ -105,6 +105,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::add_dinner_menu', 'en', 'Add dinner menu');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::add_link', 'de', 'Link hinzufügen');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::add_link', 'en', 'Add link');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::add_track_room', 'en', 'Add track room');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::city', 'de', 'Stadt/Ort');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::city', 'en', 'City');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::city', 'pt', 'Cidade');
@@ -468,6 +469,8 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::tag', 'pt', 'Tag');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track_account::account_id', 'en', 'Login Name');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track_account::track_id', 'en', 'Track');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track_room::conference_room_id', 'en', 'Room');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track_room::conference_track_id', 'en', 'Track');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conflict::conflict', 'de', 'Konflikt');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conflict::conflict', 'en', 'Conflict');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conflict::conflict', 'pt', 'Conflito');

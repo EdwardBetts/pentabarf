@@ -22,6 +22,29 @@ CREATE INDEX log_conference_track_account_conference_track_account_id_idx ON log
 CREATE INDEX log_conference_track_account_log_transaction_id_idx ON log.conference_track_account( log_transaction_id );
 
 
+CREATE TABLE base.conference_track_room (
+  conference_track_room_id SERIAL NOT NULL,
+  conference_id INTEGER NOT NULL,
+  conference_track_id INTEGER NOT NULL,
+  conference_room_id INTEGER NOT NULL
+);
+
+CREATE TABLE conference_track_room (
+  FOREIGN KEY (conference_id) REFERENCES conference (conference_id) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (conference_track_id) REFERENCES conference_track (conference_track_id) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (conference_room_id) REFERENCES conference_room (conference_room_id) ON UPDATE CASCADE ON DELETE CASCADE,
+  UNIQUE (conference_id, conference_track_id, conference_room_id),
+  PRIMARY KEY (conference_track_room_id)
+) INHERITS (base.conference_track_room);
+
+CREATE TABLE log.conference_track_room (
+) INHERITS (base.logging, base.conference_track_room );
+
+CREATE INDEX log_conference_track_room_conference_track_room_id_idx ON log.conference_track_room( conference_track_room_id );
+CREATE INDEX log_conference_track_room_log_transaction_id_idx ON log.conference_track_room( log_transaction_id );
+
+INSERT INTO object_domain (object, domain) VALUES ('conference_track_room', 'conference');
+
 -- Feature was introduced from conference_id 13 onwards - hard-coded.
 
 CREATE OR REPLACE FUNCTION track_manager_trigger() RETURNS TRIGGER AS $$
@@ -102,6 +125,15 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('confere
 
 INSERT INTO ui_message (ui_message) VALUES ('conference_track::conference_call_for_papers_url');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track::conference_call_for_papers_url', 'en', 'Call For Papers URL');
+
+INSERT INTO ui_message (ui_message) VALUES ('conference_track_room::conference_room_id');
+INSERT INTO ui_message (ui_message) VALUES ('conference_track_room::conference_track_id');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track_room::conference_room_id', 'en', 'Room');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference_track_room::conference_track_id', 'en', 'Track');
+
+INSERT INTO ui_message (ui_message) VALUES ('conference::add_track_room');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('conference::add_track_room', 'en', 'Add track room');
+
 
 INSERT INTO ui_message (ui_message) VALUES ('event::licence');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::licence', 'en', 'Software Licences');

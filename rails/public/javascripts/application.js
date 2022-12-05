@@ -335,6 +335,24 @@ function add_track_manager( current_transaction_id, conference_track_account_id,
   replace_element_with_hidden_field( select_track );
 }
 
+function add_track_room( current_transaction_id, conference_track_room_id, conference_track_id, conference_room_id ) {
+  table_add_row( 'conference_track_room', current_transaction_id, conference_track_room_id, conference_track_id, conference_room_id );
+  var index = table_row_counter['conference_track_room'] - 1;
+  var select = $('conference_track_room[' + index + '][conference_room_id]');
+  var link = document.createElement('a');
+  link.href = document.URL;
+  link.appendChild( document.createTextNode( select.options[select.selectedIndex].text ) );
+  select.parentNode.appendChild( link );
+  replace_element_with_hidden_field( select );
+
+  var select_track = $('conference_track_room[' + index + '][conference_track_id]');
+  var link_track = document.createElement('a');
+  link_track.href = document.URL;
+  link_track.appendChild( document.createTextNode( select_track.options[select_track.selectedIndex].text ) );
+  select_track.parentNode.appendChild( link_track );
+  replace_element_with_hidden_field( select_track );
+}
+
 function add_conference_day(current_transaction_id,conference_day_id,conference_day,name,public) {
   table_add_row( 'conference_day', current_transaction_id, conference_day_id, conference_day, name, public );
   var index = table_row_counter['conference_day'] - 1;

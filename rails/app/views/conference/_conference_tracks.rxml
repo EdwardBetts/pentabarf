@@ -78,5 +78,45 @@ xml.div(:id=>'content-tracks') do
     xml.button( local('conference::add_account_track'), {:type=>:button,:onclick=>'table_add_row("conference_track_account")'})
   end
 
+  xml.fieldset do
+    xml.legend( local('Track Rooms') )
+
+    xml.table(:id=>'conference_track_room_table',:style=>'display:none') do
+
+      xml.thead do
+        xml.tr do
+          [:conference_track_id,:conference_room_id].each do | field | xml.th( local( "conference_track_room::#{field}") ) end
+          xml.th local( "form::remove" )
+        end
+      end
+
+      xml.tbody(:id=>'conference_track_room_tbody') do
+        xml.tr(:id=>'conference_track_room_template',:style=>'display:none') do
+          xml.td do
+            xml.input({:type=>:hidden,:id=>'conference_track_room[row_id][current_transaction_id]',:name=>'conference_track_room[row_id][current_transaction_id]',:value=>0})
+            xml.input({:type=>:hidden,:id=>'conference_track_room[row_id][conference_track_room_id]',:name=>'conference_track_room[row_id][conference_track_room_id]'})
+            tracks = @conference.tracks.map{|t| [t.conference_track_id,t.conference_track]}
+            if not tracks.empty?
+             xml << select_tag( 'conference_track_room[row_id][conference_track_id]', tracks,{:with_empty=>true})
+           end
+          end
+          xml.td do
+	    xml << select_tag( 'conference_track_room[row_id][conference_room_id]', @conference.rooms.map{|r| [r.conference_room_id,r.conference_room]}, {:with_empty=>true} )
+          end
+
+          xml.td do xml.input({:type=>:checkbox,:name=>'conference_track_room[row_id][remove]',:id=>'conference_track_room[row_id][remove]'}) end
+        end
+      end
+    end
+
+    xml.script(:type=>'text/javascript') do
+      @conference.track_rooms.each do | a |
+        xml << js_function( 'add_track_room', a.current_transaction_id, a.conference_track_room_id, a.conference_track_id, a.conference_room_id  )
+      end
+    end
+
+    xml.button( local('conference::add_track_room'), {:type=>:button,:onclick=>'table_add_row("conference_track_room")'})
+  end
+
 end
 

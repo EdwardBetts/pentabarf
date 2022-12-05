@@ -18,7 +18,7 @@ xml.div(:id=>'content-general') do
       xml << check_box_row( @conference_person, :reconfirmed )
 
       if POPE.permission?('account::modify')
-        xml << text_field_row (@conference_person, :voucher_number )
+        xml << text_field_row(@conference_person, :voucher_number )
       end
 
     end

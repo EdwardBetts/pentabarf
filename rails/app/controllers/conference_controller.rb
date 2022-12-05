@@ -62,6 +62,7 @@ class ConferenceController < ApplicationController
     write_file_row( Conference_image, params[:conference_image], {:preset=>{:conference_id => conf.conference_id},:image=>true})
     write_rows( Dinner_menu, params[:dinner_menu], {:preset=>{:conference_id => conf.conference_id},:ignore_empty=>:title})
     write_rows( Conference_track_account, params[:conference_track_account], {:preset=>{:conference_id => conf.conference_id},:ignore_empty=>:conference_track_id})
+    write_rows( Conference_track_room, params[:conference_track_room], {:preset=>{:conference_id => conf.conference_id},:ignore_empty=>:conference_track_id})
 
     POPE.user.current_conference_id ||= conf.conference_id
     redirect_to( :action => :edit, :conference_id => conf.conference_id)

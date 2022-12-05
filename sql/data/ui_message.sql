@@ -52,6 +52,7 @@ INSERT INTO ui_message (ui_message) VALUES ('conference::add_conference_track');
 INSERT INTO ui_message (ui_message) VALUES ('conference::add_dinner_menu');
 INSERT INTO ui_message (ui_message) VALUES ('conference::add_event_rating_category');
 INSERT INTO ui_message (ui_message) VALUES ('conference::add_link');
+INSERT INTO ui_message (ui_message) VALUES ('conference::add_track_room');
 INSERT INTO ui_message (ui_message) VALUES ('conference::city');
 INSERT INTO ui_message (ui_message) VALUES ('conference::conference_phase');
 INSERT INTO ui_message (ui_message) VALUES ('conference::conference_room_rename');
@@ -211,6 +212,8 @@ INSERT INTO ui_message (ui_message) VALUES ('conference_track::conference_track_
 INSERT INTO ui_message (ui_message) VALUES ('conference_track::conference_track_mail_alias');
 INSERT INTO ui_message (ui_message) VALUES ('conference_track::rank');
 INSERT INTO ui_message (ui_message) VALUES ('conference_track::tag');
+INSERT INTO ui_message (ui_message) VALUES ('conference_track_room::conference_room_id');
+INSERT INTO ui_message (ui_message) VALUES ('conference_track_room::conference_track_id');
 INSERT INTO ui_message (ui_message) VALUES ('conflict');
 INSERT INTO ui_message (ui_message) VALUES ('conflict::conflict');
 INSERT INTO ui_message (ui_message) VALUES ('conflict_localized');
