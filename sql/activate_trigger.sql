@@ -9,3 +9,5 @@ CREATE TRIGGER custom_fields_trigger BEFORE INSERT OR UPDATE OR DELETE ON custom
 
 CREATE TRIGGER track_manager_trigger AFTER INSERT OR UPDATE OR DELETE ON conference_track_account FOR EACH STATEMENT EXECUTE PROCEDURE track_manager_trigger();
 
+CREATE TRIGGER event_room_trigger BEFORE UPDATE OF event_state ON event FOR EACH ROW WHEN (NEW.event_state = 'accepted' AND NEW.conference_room_id IS NULL) EXECUTE PROCEDURE event_room_trigger();
+

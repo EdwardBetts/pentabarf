@@ -947,5 +947,8 @@ INSERT INTO event_role_state_localized (event_role, event_role_state, translated
 
 ALTER TABLE base.event ALTER COLUMN prerecorded SET DEFAULT FALSE;
 
+DROP TRIGGER IF EXISTS event_room_trigger on event;
+CREATE TRIGGER event_room_trigger BEFORE UPDATE OF event_state ON event FOR EACH ROW WHEN (NEW.event_state = 'accepted' AND NEW.conference_room_id IS NULL) EXECUTE PROCEDURE event_room_trigger();
+
 COMMIT;
 
