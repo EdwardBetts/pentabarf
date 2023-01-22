@@ -950,5 +950,7 @@ ALTER TABLE base.event ALTER COLUMN prerecorded SET DEFAULT FALSE;
 DROP TRIGGER IF EXISTS event_room_trigger on event;
 CREATE TRIGGER event_room_trigger BEFORE UPDATE OF event_state ON event FOR EACH ROW WHEN (NEW.event_state = 'accepted' AND NEW.conference_room_id IS NULL) EXECUTE PROCEDURE event_room_trigger();
 
+ALTER TABLE conference ADD CONSTRAINT accidental_submission_closure_check CHECK (conference_phase IN ('confusion', 'discord', 'bureaucracy') AND f_submission_enabled = true) NOT VALID;
+
 COMMIT;
 

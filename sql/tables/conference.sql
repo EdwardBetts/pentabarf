@@ -51,3 +51,5 @@ CREATE TABLE log.conference() INHERITS( base.logging, base.conference );
 CREATE INDEX log_conference_conference_id_idx ON log.conference( conference_id );
 CREATE INDEX log_conference_log_transaction_id_idx ON log.conference( log_transaction_id );
 
+ALTER TABLE conference ADD CONSTRAINT accidental_submission_closure_check CHECK (conference_phase IN ('confusion', 'discord', 'bureaucracy') AND f_submission_enabled = true) NOT VALID;
+
