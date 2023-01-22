@@ -596,7 +596,7 @@ INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::paper', 'pt', 'Apresentação de papel para processo');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::physical', 'en', 'On-campus event?');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::prerecorded', 'en', 'Pre-recorded Video?');
-INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::presentation_length', 'en', 'Presentation Length (without Q&A)');
+INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::presentation_length', 'en', 'Pre-recorded Video Length');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::public', 'de', 'Öffentliche Veranstaltung');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::public', 'en', 'Public event');
 INSERT INTO ui_message_localized (ui_message, translated, name) VALUES ('event::public', 'pt', 'Evento Público');
