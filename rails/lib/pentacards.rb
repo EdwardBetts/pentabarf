@@ -15,7 +15,7 @@ class Pentacards
     @language = 'en'
     @border_between_cards = 1 #in cm
 
-    # we ignore custom col and row settigns for now, till the layout can cope with it.
+    # we ignore custom col and row settings for now, till the layout can cope with it.
     @cols = 2
     @rows = 2
     @pages = ( events.length / ( @cols * @rows )).ceil
@@ -226,7 +226,7 @@ class Pentacards
       border = false
     else
       border = true
-      @pdf.stroke_style(PDF::Writer::StrokeStyle.new(@line_thick)) # in pixes
+      @pdf.stroke_style(PDF::Writer::StrokeStyle.new(@line_thick)) # in pixels
     end
     # inner margins in centimeter
     top_margin = PDF::Writer.cm2pts(args[:top_margin] || 0.2)

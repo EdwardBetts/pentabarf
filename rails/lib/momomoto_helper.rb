@@ -72,7 +72,7 @@ module MomomotoHelper
       # check if there really was a conflicting edit
       log_table = "Log::#{row.class.table.table_name.capitalize}".constantize
 
-      # try to get correspending log entries to check what was really changed
+      # try to get corresponding log entries to check what was really changed
       row_old = row.get_transaction_id( current_transaction_id ) rescue row.class.new
       row_now = row.get_transaction_id( row.current_transaction_id ) rescue row
       modified_columns = compare_transactions( row_old, row_now )
@@ -103,7 +103,7 @@ module MomomotoHelper
     modified_columns
   end
 
-  # writes mulitple rows to the database
+  # writes multiple rows to the database
   # klass is the class derived from Momomoto::Table in which to store the data.
   # values is a hash of hashes with the values for this table
   # see write_row for documentation of options
